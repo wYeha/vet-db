@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Data / build artifacts
+data/*.db
+data/*.db-journal
+data/*.db-wal
+
+# Node / frontend
+node_modules/
+dist/
+.vite/
+
+# Env / secrets
+.env
+*.local
