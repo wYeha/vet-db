@@ -180,13 +180,21 @@ def _fetch_galen(prefix):
         meta = json.loads(get_bytes(prefix + "metadata.json"))
     except Exception:
         pass
+    product = meta.get("product") or {}
     gi = sec.get("general_info", "") or ""
+    # Торговое название: сначала структурированное product.name из реестра, затем
+    # регэксп по OCR-тексту general_info, затем номер папки. НИКОГДА не производителя
+    # (clientView) — именно фолбэк на него давал баг «название = компания».
     m = TRADE_RE.search(gi)
-    trade = (m.group(1).strip() if m else "").strip() or (meta.get("clientView","")[:60] or prefix.rstrip("/").split("/")[-1])
+    trade = ((product.get("name") or "").strip()
+             or (m.group(1).strip() if m else "")
+             or prefix.rstrip("/").split("/")[-1])
+    generic = (product.get("chemicalName") or "").strip() or sec.get("composition", "")[:200]
+    dclass = (product.get("drugGroup") or "").strip()
     instr = "\n\n".join(f"## {k}\n{v}" for k, v in sec.items()
                         if not k.startswith("_") and isinstance(v, str) and v.strip())
-    return dict(trade=trade, generic=sec.get("composition","")[:200],
-                manuf=meta.get("clientView",""), reg=meta.get("regNumber",""),
+    return dict(trade=trade, generic=generic, dclass=dclass,
+                manuf=meta.get("clientView", ""), reg=meta.get("regNumber", ""),
                 instr=instr)
 
 def ingest_galen(cx):
@@ -198,13 +206,13 @@ def ingest_galen(cx):
     with ThreadPoolExecutor(max_workers=24) as ex:
         for rec in ex.map(_fetch_galen, folders):
             if not rec: continue
-            cx.execute("""INSERT INTO preparations(origin,trade_name,generic_name,
+            cx.execute("""INSERT INTO preparations(origin,trade_name,generic_name,drug_class,
                           manufacturer,reg_number,instruction_md)
-                          VALUES('galen',?,?,?,?,?)""",
-                       (rec["trade"], rec["generic"], rec["manuf"], rec["reg"], rec["instr"]))
+                          VALUES('galen',?,?,?,?,?,?)""",
+                       (rec["trade"], rec["generic"], rec["dclass"], rec["manuf"], rec["reg"], rec["instr"]))
             pid = cx.execute("SELECT last_insert_rowid()").fetchone()[0]
             cx.execute("INSERT INTO preparations_fts(trade_name,generic_name,drug_class,target_animals,instruction_md,prep_id) "
-                       "VALUES(?,?,?,?,?,?)", (rec["trade"], rec["generic"], "", "", rec["instr"], pid))
+                       "VALUES(?,?,?,?,?,?)", (rec["trade"], rec["generic"], rec["dclass"], "", rec["instr"], pid))
             n += 1
             if n % 500 == 0: print(f"     ...{n} ({time.time()-t0:.0f}s)")
     print(f"  [pharma:galen] rows={n} in {time.time()-t0:.0f}s")
