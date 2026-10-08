@@ -1,0 +1,632 @@
+{
+ "slug": "diseases_of_poultry",
+ "source_id": 9,
+ "num_pages": 1479,
+ "chapters": [
+  {
+   "title": "1 Principles of Disease Prevention, Diagnosis, and Control",
+   "level": 1,
+   "start": 30,
+   "end": 106,
+   "method": "fuzzy1.00"
+  },
+  {
+   "title": "2 Host Factors for Disease Resistance",
+   "level": 1,
+   "start": 106,
+   "end": 139,
+   "method": "fuzzy1.00"
+  },
+  {
+   "title": "3 Newcastle Disease, Other Avian Paramyxoviruses, and Avian Metapneumovirus Infections",
+   "level": 1,
+   "start": 139,
+   "end": 194,
+   "method": "fuzzy0.85"
+  },
+  {
+   "title": "4 Infectious Bronchitis",
+   "level": 1,
+   "start": 194,
+   "end": 284,
+   "method": "fuzzy1.00"
+  },
+  {
+   "title": "5 Infectious Laryngotracheitis",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "6 Influenza",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "7 Infectious Bursal Disease",
+   "level": 1,
+   "start": 284,
+   "end": 311,
+   "method": "fuzzy1.00"
+  },
+  {
+   "title": "8 Chicken Infectious Anemia and Circovirus Infections in Commercial Flocks",
+   "level": 1,
+   "start": 311,
+   "end": 348,
+   "method": "fuzzy1.00"
+  },
+  {
+   "title": "9 Adenovirus Infections",
+   "level": 1,
+   "start": 348,
+   "end": 409,
+   "method": "fuzzy1.00"
+  },
+  {
+   "title": "10 Pox",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "11 Avian Reovirus Infections",
+   "level": 1,
+   "start": 409,
+   "end": 428,
+   "method": "fuzzy1.00"
+  },
+  {
+   "title": "12 Viral Enteric Infections",
+   "level": 1,
+   "start": 428,
+   "end": 473,
+   "method": "fuzzy1.00"
+  },
+  {
+   "title": "13 Viral Infections of Waterfowl",
+   "level": 1,
+   "start": 473,
+   "end": 525,
+   "method": "fuzzy1.00"
+  },
+  {
+   "title": "14 Other Viral Infections",
+   "level": 1,
+   "start": 525,
+   "end": 575,
+   "method": "fuzzy1.00"
+  },
+  {
+   "title": "15 Neoplastic Diseases",
+   "level": 1,
+   "start": 575,
+   "end": 746,
+   "method": "fuzzy1.00"
+  },
+  {
+   "title": "16 Salmonella Infections",
+   "level": 1,
+   "start": 746,
+   "end": 781,
+   "method": "fuzzy1.00"
+  },
+  {
+   "title": "17 Campylobacteriosis",
+   "level": 1,
+   "start": 781,
+   "end": 797,
+   "method": "fuzzy1.00"
+  },
+  {
+   "title": "18 Colibacillosis",
+   "level": 1,
+   "start": 797,
+   "end": 858,
+   "method": "fuzzy1.00"
+  },
+  {
+   "title": "19 Pasteurellosis and Other Respiratory Bacterial Infections",
+   "level": 1,
+   "start": 858,
+   "end": 917,
+   "method": "fuzzy1.00"
+  },
+  {
+   "title": "20 Infectious Coryza and Related Bacterial Infections",
+   "level": 1,
+   "start": 917,
+   "end": 934,
+   "method": "fuzzy1.00"
+  },
+  {
+   "title": "21 Mycoplasmosis",
+   "level": 1,
+   "start": 934,
+   "end": 993,
+   "method": "fuzzy1.00"
+  },
+  {
+   "title": "22 Clostridial Diseases",
+   "level": 1,
+   "start": 993,
+   "end": 1022,
+   "method": "fuzzy1.00"
+  },
+  {
+   "title": "23 Other Bacterial Diseases",
+   "level": 1,
+   "start": 1022,
+   "end": 1138,
+   "method": "fuzzy1.00"
+  },
+  {
+   "title": "24 Avian Chlamydiosis",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "25 Fungal Infections",
+   "level": 1,
+   "start": 1138,
+   "end": 1184,
+   "method": "fuzzy1.00"
+  },
+  {
+   "title": "26 External Parasites and Poultry Pests",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "27 Internal Parasites",
+   "level": 1,
+   "start": 1184,
+   "end": 1219,
+   "method": "fuzzy1.00"
+  },
+  {
+   "title": "28 Protozoal Infections",
+   "level": 1,
+   "start": 1219,
+   "end": 1313,
+   "method": "fuzzy1.00"
+  },
+  {
+   "title": "29 Nutritional Diseases",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "30 Developmental, Metabolic, and Other Noninfectious Disorders",
+   "level": 1,
+   "start": 1313,
+   "end": 1357,
+   "method": "fuzzy1.00"
+  },
+  {
+   "title": "31 Mycotoxicoses",
+   "level": 1,
+   "start": 1357,
+   "end": 1376,
+   "method": "fuzzy1.00"
+  },
+  {
+   "title": "32 Toxins and Poisons",
+   "level": 1,
+   "start": 1376,
+   "end": 1412,
+   "method": "fuzzy1.00"
+  },
+  {
+   "title": "33 Emerging Diseases and Diseases of Complex or Unknown Etiology",
+   "level": 1,
+   "start": 1412,
+   "end": 1479,
+   "method": "fuzzy1.00"
+  }
+ ],
+ "markdown_headings": [
+  {
+   "title": "Diseases of Poultry",
+   "page": 0
+  },
+  {
+   "title": "Diseases of Poultry",
+   "page": 4
+  },
+  {
+   "title": "Registered Office",
+   "page": 5
+  },
+  {
+   "title": "Dedicated to",
+   "page": 6
+  },
+  {
+   "title": "Contents",
+   "page": 8
+  },
+  {
+   "title": "Preface: Historical Review of Diseases of Poultry",
+   "page": 11
+  },
+  {
+   "title": "Introduction",
+   "page": 17
+  },
+  {
+   "title": "Contributors",
+   "page": 19
+  },
+  {
+   "title": "Section I",
+   "page": 28
+  },
+  {
+   "title": "Principles of Disease Prevention, Diagnosis, and Control",
+   "page": 30
+  },
+  {
+   "title": "Principles of Disease Prevention, Diagnosis, and Control",
+   "page": 31
+  },
+  {
+   "title": "Disease Prevention and Control in Antibiotic-Free Production",
+   "page": 67
+  },
+  {
+   "title": "Antimicrobial Therapy (Including Resistance)",
+   "page": 79
+  },
+  {
+   "title": "Public Health Significance of Poultry Diseases",
+   "page": 85
+  },
+  {
+   "title": "Host Factors for Disease Resistance",
+   "page": 106
+  },
+  {
+   "title": "The Avian Immune System",
+   "page": 107
+  },
+  {
+   "title": "Section II",
+   "page": 136
+  },
+  {
+   "title": "Newcastle Disease",
+   "page": 139
+  },
+  {
+   "title": "Avian Paramyxoviruses 2-15 and 17",
+   "page": 156
+  },
+  {
+   "title": "Infectious Bronchitis",
+   "page": 194
+  },
+  {
+   "title": "Infectious Bursal Disease",
+   "page": 284
+  },
+  {
+   "title": "Chicken Infectious Anemia and Circovirus Infections in Commercial Flocks",
+   "page": 311
+  },
+  {
+   "title": "Circovirus Infections in Commercial Flocks",
+   "page": 331
+  },
+  {
+   "title": "Adenovirus Infections",
+   "page": 348
+  },
+  {
+   "title": "Aviadenovirus Infections",
+   "page": 349
+  },
+  {
+   "title": "Atadenovirus (Egg Drop Syndrome of Chickens and Related Infections)",
+   "page": 359
+  },
+  {
+   "title": "Hemorrhagic Enteritis and Related Infections",
+   "page": 366
+  },
+  {
+   "title": "Avian Reovirus Infections",
+   "page": 409
+  },
+  {
+   "title": "Viral Enteric Infections",
+   "page": 428
+  },
+  {
+   "title": "Rotavirus Infections",
+   "page": 435
+  },
+  {
+   "title": "Astrovirus Infections",
+   "page": 443
+  },
+  {
+   "title": "Avian Enterovirus-Like Virus Infections",
+   "page": 448
+  },
+  {
+   "title": "Enteric Parvovirus Infections of Chickens and Turkeys",
+   "page": 453
+  },
+  {
+   "title": "Viral Infections of Waterfowl",
+   "page": 473
+  },
+  {
+   "title": "Duck Hepatitis",
+   "page": 477
+  },
+  {
+   "title": "Duck Virus Enteritis (Duck Plague)",
+   "page": 487
+  },
+  {
+   "title": "Parvovirus Infections of Waterfowl",
+   "page": 501
+  },
+  {
+   "title": "Other Viral Infections",
+   "page": 525
+  },
+  {
+   "title": "Arbovirus Infections",
+   "page": 534
+  },
+  {
+   "title": "Turkey Viral Hepatitis",
+   "page": 543
+  },
+  {
+   "title": "Avian Hepatitis E Virus Infections",
+   "page": 555
+  },
+  {
+   "title": "Neoplastic Diseases",
+   "page": 575
+  },
+  {
+   "title": "Marek's Disease",
+   "page": 577
+  },
+  {
+   "title": "Reticuloendotheliosis",
+   "page": 652
+  },
+  {
+   "title": "Other Tumors",
+   "page": 664
+  },
+  {
+   "title": "Section III",
+   "page": 744
+  },
+  {
+   "title": "Salmonella Infections",
+   "page": 746
+  },
+  {
+   "title": "References",
+   "page": 764
+  },
+  {
+   "title": "Campylobacteriosis",
+   "page": 781
+  },
+  {
+   "title": "Colibacillosis",
+   "page": 797
+  },
+  {
+   "title": "Adhesins",
+   "page": 805
+  },
+  {
+   "title": "References",
+   "page": 836
+  },
+  {
+   "title": "Pasteurellosis and Other Respiratory Bacterial Infections",
+   "page": 858
+  },
+  {
+   "title": "Riemerella anatipestifer Infection",
+   "page": 873
+  },
+  {
+   "title": "Infectious Coryza and Related Bacterial Infections",
+   "page": 917
+  },
+  {
+   "title": "Mycoplasmosis",
+   "page": 934
+  },
+  {
+   "title": "Mycoplasma gallisepticum Infection",
+   "page": 938
+  },
+  {
+   "title": "Mycoplasma synoviae Infection",
+   "page": 951
+  },
+  {
+   "title": "Other Mycoplasmal Infections",
+   "page": 960
+  },
+  {
+   "title": "Clostridial Diseases",
+   "page": 993
+  },
+  {
+   "title": "Botulism",
+   "page": 1003
+  },
+  {
+   "title": "Gangrenous Dermatitis",
+   "page": 1007
+  },
+  {
+   "title": "Other Bacterial Diseases",
+   "page": 1022
+  },
+  {
+   "title": "Erysipelas",
+   "page": 1037
+  },
+  {
+   "title": "Avian Intestinal Spirochetosis",
+   "page": 1045
+  },
+  {
+   "title": "Tuberculosis",
+   "page": 1060
+  },
+  {
+   "title": "Miscellaneous and Sporadic Bacterial Infections",
+   "page": 1070
+  },
+  {
+   "title": "References",
+   "page": 1128
+  },
+  {
+   "title": "Section IV",
+   "page": 1136
+  },
+  {
+   "title": "Fungal Infections",
+   "page": 1138
+  },
+  {
+   "title": "Aspergillosis",
+   "page": 1139
+  },
+  {
+   "title": "Candidiasis (Crop Mycosis)",
+   "page": 1151
+  },
+  {
+   "title": "Sporadic Fungal Infections",
+   "page": 1154
+  },
+  {
+   "title": "References",
+   "page": 1156
+  },
+  {
+   "title": "Section V",
+   "page": 1162
+  },
+  {
+   "title": "Internal Parasites",
+   "page": 1184
+  },
+  {
+   "title": "Cestodes and Trematodes",
+   "page": 1203
+  },
+  {
+   "title": "Key to Species",
+   "page": 1208
+  },
+  {
+   "title": "Protozoal Infections",
+   "page": 1219
+  },
+  {
+   "title": "Coccidiosis",
+   "page": 1220
+  },
+  {
+   "title": "Cryptosporidiosis",
+   "page": 1244
+  },
+  {
+   "title": "Histomoniasis (Histomonosis, Blackhead Disease)",
+   "page": 1250
+  },
+  {
+   "title": "Miscellaneous and Sporadic Protozoal Infections",
+   "page": 1258
+  },
+  {
+   "title": "Section VI",
+   "page": 1282
+  },
+  {
+   "title": "Developmental, Metabolic, and Other Noninfectious Disorders",
+   "page": 1313
+  },
+  {
+   "title": "References",
+   "page": 1342
+  },
+  {
+   "title": "Mycotoxicoses",
+   "page": 1357
+  },
+  {
+   "title": "Toxins and Poisons",
+   "page": 1376
+  },
+  {
+   "title": "Antimicrobials, Growth Promotants, and Protozoal Control Compounds",
+   "page": 1378
+  },
+  {
+   "title": "References",
+   "page": 1398
+  },
+  {
+   "title": "Section VII",
+   "page": 1410
+  },
+  {
+   "title": "Emerging Diseases and Diseases of Complex or Unknown Etiology",
+   "page": 1412
+  },
+  {
+   "title": "Multicausal Enteric Diseases",
+   "page": 1417
+  },
+  {
+   "title": "White Chick Syndrome",
+   "page": 1420
+  },
+  {
+   "title": "Focal Duodenal Necrosis in Table Egg Layers",
+   "page": 1422
+  },
+  {
+   "title": "Wooden Breast and Other Muscle Abnormalities",
+   "page": 1424
+  },
+  {
+   "title": "Idiopathic Egg Production Drops in Brown Layers",
+   "page": 1425
+  },
+  {
+   "title": "Index",
+   "page": 1438
+  }
+ ]
+}

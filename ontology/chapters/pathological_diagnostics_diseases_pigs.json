@@ -1,0 +1,712 @@
+{
+ "slug": "pathological_diagnostics_diseases_pigs",
+ "source_id": 13,
+ "num_pages": 100,
+ "chapters": [
+  {
+   "title": "Введение+",
+   "level": 1,
+   "start": 4,
+   "end": 6,
+   "method": "exact"
+  },
+  {
+   "title": "1. Вскрытие свиней",
+   "level": 1,
+   "start": 6,
+   "end": 19,
+   "method": "fuzzy0.67"
+  },
+  {
+   "title": "2. Алгоритм патологоанатомической дифференциальной диагностики болезней свиней групп доращивания и откорма",
+   "level": 1,
+   "start": 19,
+   "end": 23,
+   "method": "exact"
+  },
+  {
+   "title": "3. Болезни и отдельные макроскопические изменения",
+   "level": 1,
+   "start": 23,
+   "end": 25,
+   "method": "exact"
+  },
+  {
+   "title": "3.1. Актинобациллёзная плевропневмония",
+   "level": 2,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "3.2. Аскариоз",
+   "level": 2,
+   "start": 25,
+   "end": 26,
+   "method": "fuzzy0.85"
+  },
+  {
+   "title": "3.3. Атрофический ринит",
+   "level": 2,
+   "start": 26,
+   "end": 34,
+   "method": "fuzzy0.85"
+  },
+  {
+   "title": "3.4. Африканская чума свиней",
+   "level": 2,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "3.5. Бабезиоз",
+   "level": 2,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "3.6. Балантидиоз",
+   "level": 2,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "3.7. Болезнь Ауески",
+   "level": 2,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "3.8. Болезнь Тешена",
+   "level": 2,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "3.9. Бруцеллёз",
+   "level": 2,
+   "start": 34,
+   "end": 43,
+   "method": "fuzzy0.85"
+  },
+  {
+   "title": "3.10. Везикулярная болезнь свиней",
+   "level": 2,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "3.11. Везикулярная экзантема свиней",
+   "level": 2,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "3.12. Везикулярный стоматит",
+   "level": 2,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "3.13. Гемофилёзный полисерозит",
+   "level": 2,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "3.14. Гиповитаминоз Е - гипоселеноз",
+   "level": 2,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "3.15. Гипостаз",
+   "level": 2,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "3.16. Грипп",
+   "level": 2,
+   "start": 43,
+   "end": 47,
+   "method": "fuzzy0.85"
+  },
+  {
+   "title": "3.17. Дизентерия",
+   "level": 2,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "3.18. Заворот кишок",
+   "level": 2,
+   "start": 47,
+   "end": 48,
+   "method": "exact"
+  },
+  {
+   "title": "3.19. Злокачественный отёк",
+   "level": 2,
+   "start": 48,
+   "end": 59,
+   "method": "fuzzy0.85"
+  },
+  {
+   "title": "3.20. Каннибализм",
+   "level": 2,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "3.21. Классическая чума свиней",
+   "level": 2,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "3.22. Колибактериоз",
+   "level": 2,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "3.23. Лавсониоз",
+   "level": 2,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "3.24. Лептоспироз",
+   "level": 2,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "3.25. Метастронгилёз",
+   "level": 2,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "3.26. Микобактериоз",
+   "level": 2,
+   "start": 59,
+   "end": 62,
+   "method": "fuzzy0.85"
+  },
+  {
+   "title": "3.27. Микоплазмозный полисерозит и полиартрит",
+   "level": 2,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "3.28. Микотоксикоз",
+   "level": 2,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "3.29. Некробактериоз",
+   "level": 2,
+   "start": 62,
+   "end": 64,
+   "method": "fuzzy0.85"
+  },
+  {
+   "title": "3.30. Оспа",
+   "level": 2,
+   "start": 64,
+   "end": 66,
+   "method": "fuzzy0.85"
+  },
+  {
+   "title": "3.31. Отравление антикоагулянтом",
+   "level": 2,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "3.32. Отравление едкими веществами",
+   "level": 2,
+   "start": 66,
+   "end": 68,
+   "method": "exact"
+  },
+  {
+   "title": "3.33. Пастереллёз",
+   "level": 2,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "3.34. Разрыв органов",
+   "level": 2,
+   "start": 68,
+   "end": 69,
+   "method": "exact"
+  },
+  {
+   "title": "3.35. Расширение желудка и кишок",
+   "level": 2,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "3.36. Репродуктивно-респираторный синдром свиней",
+   "level": 2,
+   "start": 69,
+   "end": 70,
+   "method": "fuzzy0.85"
+  },
+  {
+   "title": "3.37. Рожа",
+   "level": 2,
+   "start": 70,
+   "end": 73,
+   "method": "fuzzy0.85"
+  },
+  {
+   "title": "3.38. Сальмонеллёз",
+   "level": 2,
+   "start": 73,
+   "end": 78,
+   "method": "fuzzy0.85"
+  },
+  {
+   "title": "3.39. Сибирская язва",
+   "level": 2,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "3.40. Стафилококкоз",
+   "level": 2,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "3.41. Стрептококкоз",
+   "level": 2,
+   "start": 78,
+   "end": 80,
+   "method": "fuzzy0.85"
+  },
+  {
+   "title": "3.42. Стресс синдром",
+   "level": 2,
+   "start": 80,
+   "end": 81,
+   "method": "exact"
+  },
+  {
+   "title": "3.43. Трихоцефалёз",
+   "level": 2,
+   "start": 81,
+   "end": 82,
+   "method": "fuzzy0.85"
+  },
+  {
+   "title": "3.44. Трупная эмфизема",
+   "level": 2,
+   "start": 82,
+   "end": 86,
+   "method": "exact"
+  },
+  {
+   "title": "3.45. Туберкулёз",
+   "level": 2,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "3.46. Цирковироз",
+   "level": 2,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "3.47. Цистит",
+   "level": 2,
+   "start": 86,
+   "end": 94,
+   "method": "exact"
+  },
+  {
+   "title": "3.48. Цистицеркоз",
+   "level": 2,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "3.49. Энзоотическая пневмония",
+   "level": 2,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "3.50. Энцефаломиокардит свиней",
+   "level": 2,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "3.51. Эхинококкоз, альвеококкоз",
+   "level": 2,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "3.52. Язвенная болезнь желудка",
+   "level": 2,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "3.53. Ящур",
+   "level": 2,
+   "start": 94,
+   "end": 100,
+   "method": "fuzzy0.85"
+  }
+ ],
+ "markdown_headings": [
+  {
+   "title": "Патологоанатомическая диагностика болезней свиней групп доращивания и откорма",
+   "page": 0
+  },
+  {
+   "title": "Балабанова В.И., Кудряшов А.А.",
+   "page": 1
+  },
+  {
+   "title": "Содержание",
+   "page": 2
+  },
+  {
+   "title": "Введение",
+   "page": 4
+  },
+  {
+   "title": "1. ВСКРЫТИЕ ТРУПОВ СВИНЕЙ",
+   "page": 6
+  },
+  {
+   "title": "ПРАВИЛА ПО ОХРАНЕ ТРУДА В СЕЛЬСКОМ ХОЗЯЙСТВЕ",
+   "page": 7
+  },
+  {
+   "title": "3. Порядок вскрытия",
+   "page": 8
+  },
+  {
+   "title": "4. Методика вскрытия (исследования) отдельных органов",
+   "page": 13
+  },
+  {
+   "title": "Желудок",
+   "page": 16
+  },
+  {
+   "title": "Носовая полость",
+   "page": 17
+  },
+  {
+   "title": "2. Алгоритм патологоанатомической дифференциальной диагностики болезней свиней групп доращивания и откорма",
+   "page": 19
+  },
+  {
+   "title": "3. БОЛЕЗНИ И ОТДЕЛЬНЫЕ МАКРОСКОПИЧЕСКИЕ ИЗМЕНЕНИЯ",
+   "page": 23
+  },
+  {
+   "title": "Дифференииальная диагностика",
+   "page": 24
+  },
+  {
+   "title": "3.2. Аскариоз (Ascariosis)",
+   "page": 25
+  },
+  {
+   "title": "3.3. Атрофический ринит свиней (Rhinitis atrophica suum)",
+   "page": 26
+  },
+  {
+   "title": "Дифференииальная диагностика",
+   "page": 26
+  },
+  {
+   "title": "Диагноз",
+   "page": 28
+  },
+  {
+   "title": "Диагноз",
+   "page": 29
+  },
+  {
+   "title": "Диагноз",
+   "page": 30
+  },
+  {
+   "title": "Патологоанатомические изменения",
+   "page": 31
+  },
+  {
+   "title": "Патогенез",
+   "page": 33
+  },
+  {
+   "title": "3.9. Бруцеллёз (Brucellosis)",
+   "page": 34
+  },
+  {
+   "title": "Диагноз",
+   "page": 34
+  },
+  {
+   "title": "Патогенез",
+   "page": 35
+  },
+  {
+   "title": "Патогенез",
+   "page": 36
+  },
+  {
+   "title": "Диагноз",
+   "page": 37
+  },
+  {
+   "title": "Патологоанатомические изменения",
+   "page": 39
+  },
+  {
+   "title": "Дифференииальная диагностика",
+   "page": 39
+  },
+  {
+   "title": "Результат гистологического исследования",
+   "page": 41
+  },
+  {
+   "title": "3.16. Грипп свиней (Grippus suum, influenza suum)",
+   "page": 43
+  },
+  {
+   "title": "Диагноз",
+   "page": 43
+  },
+  {
+   "title": "Патогенез",
+   "page": 45
+  },
+  {
+   "title": "Дифференииальная диагностика",
+   "page": 46
+  },
+  {
+   "title": "3.18. Заворот кишок",
+   "page": 47
+  },
+  {
+   "title": "3.19. Злокачественный отёк (Oedema malignum)",
+   "page": 48
+  },
+  {
+   "title": "Клиническое проявление",
+   "page": 50
+  },
+  {
+   "title": "Микроскопические изменения",
+   "page": 51
+  },
+  {
+   "title": "Дифференииальная диагностика",
+   "page": 51
+  },
+  {
+   "title": "Патогенез",
+   "page": 53
+  },
+  {
+   "title": "Патогенез",
+   "page": 54
+  },
+  {
+   "title": "Диагноз",
+   "page": 54
+  },
+  {
+   "title": "Клиническое проявление",
+   "page": 56
+  },
+  {
+   "title": "Диагноз",
+   "page": 56
+  },
+  {
+   "title": "Дифференииальная диагностика",
+   "page": 57
+  },
+  {
+   "title": "3.26. Микобактериоз (Mycobacteriosis)",
+   "page": 59
+  },
+  {
+   "title": "Дифференииальная диагностика",
+   "page": 59
+  },
+  {
+   "title": "Дифференииальная диагностика",
+   "page": 60
+  },
+  {
+   "title": "3.29. Некробактериоз (Necrobacteriosis)",
+   "page": 62
+  },
+  {
+   "title": "Клинико-анатомическое проявление",
+   "page": 63
+  },
+  {
+   "title": "3.30. Оспа свиней (Variola suilla)",
+   "page": 64
+  },
+  {
+   "title": "Диагноз",
+   "page": 64
+  },
+  {
+   "title": "3.32. Отравление едкими веществами",
+   "page": 66
+  },
+  {
+   "title": "Патологоанатомические изменения",
+   "page": 67
+  },
+  {
+   "title": "3.34. Разрыв органов",
+   "page": 68
+  },
+  {
+   "title": "3.36. Репродуктивно-респираторный синдром свиней (Reproductive-respiratory syndrome of swine - англ.)",
+   "page": 69
+  },
+  {
+   "title": "3.37. Рожа свиней (Erysipelas suum)",
+   "page": 70
+  },
+  {
+   "title": "Диагноз",
+   "page": 71
+  },
+  {
+   "title": "3.38. Сальмонеллёз свиней (Salmonellosis suum)",
+   "page": 73
+  },
+  {
+   "title": "Клиническое проявление",
+   "page": 74
+  },
+  {
+   "title": "Дифференииальная диагностика",
+   "page": 74
+  },
+  {
+   "title": "Диагноз",
+   "page": 75
+  },
+  {
+   "title": "3.41. Стрептококкоз поросят (Streptococcosis suus)",
+   "page": 78
+  },
+  {
+   "title": "Дифференииальная диагностика",
+   "page": 79
+  },
+  {
+   "title": "3.42. Стресс синдром",
+   "page": 80
+  },
+  {
+   "title": "3.43. Трихоцефалёз (Trichocephalosis)",
+   "page": 81
+  },
+  {
+   "title": "3.44. Трупная эмфизема",
+   "page": 82
+  },
+  {
+   "title": "Микроскопические изменения",
+   "page": 82
+  },
+  {
+   "title": "Патогенез",
+   "page": 84
+  },
+  {
+   "title": "3.47. Цистит",
+   "page": 86
+  },
+  {
+   "title": "Клиническое проявление",
+   "page": 87
+  },
+  {
+   "title": "Дифференииальная диагностика",
+   "page": 87
+  },
+  {
+   "title": "Диагноз",
+   "page": 88
+  },
+  {
+   "title": "Патогенез",
+   "page": 91
+  },
+  {
+   "title": "Патологоанатомические изменения",
+   "page": 91
+  },
+  {
+   "title": "3.53. Ящур (Aphthae epizooticae)",
+   "page": 94
+  },
+  {
+   "title": "Список литературы",
+   "page": 95
+  }
+ ]
+}

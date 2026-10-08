@@ -1,0 +1,651 @@
+{
+ "slug": "antimicrobial_usage_in_pig_production",
+ "source_id": 4,
+ "num_pages": 306,
+ "chapters": [
+  {
+   "title": "Pig production and antimicrobial usage",
+   "level": 1,
+   "start": 14,
+   "end": 22,
+   "method": "exact"
+  },
+  {
+   "title": "Check: Quantifying antimicrobial usage",
+   "level": 1,
+   "start": 22,
+   "end": 29,
+   "method": "exact"
+  },
+  {
+   "title": "Improve: Herd management & biosecurity",
+   "level": 1,
+   "start": 29,
+   "end": 48,
+   "method": "exact"
+  },
+  {
+   "title": "Reduce: Action & psychology",
+   "level": 1,
+   "start": 48,
+   "end": 70,
+   "method": "exact"
+  },
+  {
+   "title": "Scientific Aims",
+   "level": 1,
+   "start": 70,
+   "end": 145,
+   "method": "exact"
+  },
+  {
+   "title": "Assigning Defined Daily Doses Animal: A European multi-country experience for antimicrobial products authorized for usage in pigs",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Alternatives to the use of antimicrobial agents in pig production: a multi-country expert-ranking of perceived effectiveness",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "The biosecurity status and its associations with production and management characteristics in farrow- to-finish pig herds",
+   "level": 1,
+   "start": 145,
+   "end": 197,
+   "method": "exact"
+  },
+  {
+   "title": "Evaluation of the relationship between the biosecurity status, production parameters, herd characteristics and antimicrobial usage in farrow-to-finish pig production in four EU countries",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Reducing antimicrobial usage in pig production without jeopardizing production parameters",
+   "level": 1,
+   "start": 197,
+   "end": 225,
+   "method": "exact"
+  },
+  {
+   "title": "Antimicrobial usage in pig production: Belgium versus EU",
+   "level": 1,
+   "start": 225,
+   "end": 227,
+   "method": "exact"
+  },
+  {
+   "title": "The way forward: Antimicrobial usage quantification",
+   "level": 1,
+   "start": 227,
+   "end": 232,
+   "method": "exact"
+  },
+  {
+   "title": "The way forward: Biosecurity & Herd management",
+   "level": 1,
+   "start": 232,
+   "end": 240,
+   "method": "exact"
+  },
+  {
+   "title": "The way forward: Coaching",
+   "level": 1,
+   "start": 240,
+   "end": 306,
+   "method": "exact"
+  }
+ ],
+ "markdown_headings": [
+  {
+   "title": "ANTIMICROBIAL USAGE",
+   "page": 0
+  },
+  {
+   "title": "ANTIMICROBIAL USAGE IN PIG PRODUCTION;",
+   "page": 1
+  },
+  {
+   "title": "Chairman",
+   "page": 2
+  },
+  {
+   "title": "CONTENTS",
+   "page": 5
+  },
+  {
+   "title": "11",
+   "page": 10
+  },
+  {
+   "title": "LIST OF ABBREVIATIONS",
+   "page": 11
+  },
+  {
+   "title": "CHAPTER 1",
+   "page": 13
+  },
+  {
+   "title": "PIG PRODUCTION AND ANTIMICROBIAL USAGE",
+   "page": 14
+  },
+  {
+   "title": "2.1 Current pig production in Europe",
+   "page": 15
+  },
+  {
+   "title": "2.2 The importance of pig production in Belgium",
+   "page": 16
+  },
+  {
+   "title": "3.2 Quantitative antimicrobial usage in Belgium and the European Union",
+   "page": 18
+  },
+  {
+   "title": "4. The problem of antimicrobial resistance",
+   "page": 19
+  },
+  {
+   "title": "CHECK: QUANTIFYING ANTIMICROBIAL USAGE",
+   "page": 22
+  },
+  {
+   "title": "1. The antimicrobial usage formula",
+   "page": 26
+  },
+  {
+   "title": "2. The Defined Daily Dose Animal",
+   "page": 28
+  },
+  {
+   "title": "IMPROVE: HERD MANAGEMENT \\& BIOSECURITY",
+   "page": 29
+  },
+  {
+   "title": "External biosecurity",
+   "page": 36
+  },
+  {
+   "title": "Supply of feed, water and equipment",
+   "page": 38
+  },
+  {
+   "title": "Access check",
+   "page": 39
+  },
+  {
+   "title": "Vermin and bird control",
+   "page": 40
+  },
+  {
+   "title": "Location and environment",
+   "page": 41
+  },
+  {
+   "title": "Internal biosecurity",
+   "page": 43
+  },
+  {
+   "title": "Nursery unit",
+   "page": 44
+  },
+  {
+   "title": "Fattening period",
+   "page": 45
+  },
+  {
+   "title": "Cleaning and disinfection",
+   "page": 46
+  },
+  {
+   "title": "REDUCE: ACTION \\& PSYCHOLOGY",
+   "page": 48
+  },
+  {
+   "title": "2. Breaking routines",
+   "page": 49
+  },
+  {
+   "title": "REFERENCES",
+   "page": 52
+  },
+  {
+   "title": "CHAPTER 2",
+   "page": 69
+  },
+  {
+   "title": "SCIENTIFIC AIMS",
+   "page": 70
+  },
+  {
+   "title": "CHAPTER 3",
+   "page": 71
+  },
+  {
+   "title": "ABSTRACT",
+   "page": 73
+  },
+  {
+   "title": "INTRODUCTION",
+   "page": 74
+  },
+  {
+   "title": "MATERIALS AND METHODS",
+   "page": 75
+  },
+  {
+   "title": "Method of DDDA determination for individual products",
+   "page": 76
+  },
+  {
+   "title": "Assigning DDDAs across countries",
+   "page": 77
+  },
+  {
+   "title": "Data analysis",
+   "page": 78
+  },
+  {
+   "title": "Deviation from consensus DDDA",
+   "page": 79
+  },
+  {
+   "title": "Feed/water",
+   "page": 80
+  },
+  {
+   "title": "Parenteral",
+   "page": 82
+  },
+  {
+   "title": "Influence of countries on difference in dosage",
+   "page": 83
+  },
+  {
+   "title": "Duration of treatment",
+   "page": 84
+  },
+  {
+   "title": "Assumptions and simplifications",
+   "page": 86
+  },
+  {
+   "title": "Number of products and variation",
+   "page": 87
+  },
+  {
+   "title": "Critically important ASs",
+   "page": 88
+  },
+  {
+   "title": "Transparency declarations",
+   "page": 89
+  },
+  {
+   "title": "Funding",
+   "page": 90
+  },
+  {
+   "title": "REFERENCES",
+   "page": 114
+  },
+  {
+   "title": "CHAPTER 4",
+   "page": 118
+  },
+  {
+   "title": "ABSTRACT",
+   "page": 120
+  },
+  {
+   "title": "INTRODUCTION",
+   "page": 121
+  },
+  {
+   "title": "MATERIALS AND METHODS",
+   "page": 123
+  },
+  {
+   "title": "Selection of experts and data collection",
+   "page": 124
+  },
+  {
+   "title": "Data analysis - Categorical Principal Components Analysis",
+   "page": 125
+  },
+  {
+   "title": "Top 5 alternatives",
+   "page": 128
+  },
+  {
+   "title": "Categorical Principal Component Analysis",
+   "page": 132
+  },
+  {
+   "title": "DISCUSSION",
+   "page": 133
+  },
+  {
+   "title": "CONCLUSIONS",
+   "page": 136
+  },
+  {
+   "title": "Funding",
+   "page": 137
+  },
+  {
+   "title": "REFERENCES",
+   "page": 138
+  },
+  {
+   "title": "CHAPTER 5",
+   "page": 144
+  },
+  {
+   "title": "THE BIOSECURITY STATUS AND ITS ASSOCIATIONS WITH PRODUCTION AND MANAGEMENT CHARACTERISTICS IN FARROW-TO-FINISH PIG HERDS",
+   "page": 145
+  },
+  {
+   "title": "ABSTRACT",
+   "page": 146
+  },
+  {
+   "title": "ASSOCIATIONS BIOSECURITY AND PRODUCTION",
+   "page": 147
+  },
+  {
+   "title": "MATERIALS AND METHODS",
+   "page": 148
+  },
+  {
+   "title": "Herd visit and interviews",
+   "page": 149
+  },
+  {
+   "title": "Biosecurity quantification",
+   "page": 150
+  },
+  {
+   "title": "Statistical analysis",
+   "page": 151
+  },
+  {
+   "title": "RESULTS",
+   "page": 152
+  },
+  {
+   "title": "Biosecurity in the different countries",
+   "page": 155
+  },
+  {
+   "title": "Link between biosecurity and farm characteristics",
+   "page": 159
+  },
+  {
+   "title": "Link biosecurity level - frequency of treatment against certain disease symptoms as a proxy for disease incidence",
+   "page": 163
+  },
+  {
+   "title": "DISCUSSION",
+   "page": 164
+  },
+  {
+   "title": "Biosecurity in the different countries",
+   "page": 165
+  },
+  {
+   "title": "Link between biosecurity and farm characteristics",
+   "page": 166
+  },
+  {
+   "title": "CONCLUSIONS",
+   "page": 168
+  },
+  {
+   "title": "REFERENCES",
+   "page": 169
+  },
+  {
+   "title": "CHAPTER 6",
+   "page": 172
+  },
+  {
+   "title": "ABSTRACT",
+   "page": 174
+  },
+  {
+   "title": "METHODS",
+   "page": 176
+  },
+  {
+   "title": "Data collection",
+   "page": 177
+  },
+  {
+   "title": "Antimicrobial usage quantification",
+   "page": 178
+  },
+  {
+   "title": "Data processing",
+   "page": 179
+  },
+  {
+   "title": "RESULTS",
+   "page": 180
+  },
+  {
+   "title": "Associations between antimicrobial usage, biosecurity level and farm characteristics",
+   "page": 181
+  },
+  {
+   "title": "DISCUSSION",
+   "page": 185
+  },
+  {
+   "title": "EVALUATION BIOSECURITY, PRODUCTION \\& AM USAGE CHAPTER 6",
+   "page": 187
+  },
+  {
+   "title": "Study design and limitations",
+   "page": 188
+  },
+  {
+   "title": "CONCLUSION",
+   "page": 189
+  },
+  {
+   "title": "EVALUATION BIOSECURITY, PRODUCTION \\& AM USAGE CHAPTER 6",
+   "page": 190
+  },
+  {
+   "title": "EVALUATION BIOSECURITY, PRODUCTION \\& AM USAGE CHAPTER 6",
+   "page": 191
+  },
+  {
+   "title": "CHAPTER 7",
+   "page": 196
+  },
+  {
+   "title": "REDUCING ANTIMICROBIAL USAGE IN PIG PRODUCTION WITHOUT JEOPARDIZING PRODUCTION PARAMETERS",
+   "page": 197
+  },
+  {
+   "title": "ABSTRACT",
+   "page": 198
+  },
+  {
+   "title": "INTRODUCTION",
+   "page": 199
+  },
+  {
+   "title": "MATERIALS AND METHODS",
+   "page": 200
+  },
+  {
+   "title": "Follow up herd visits",
+   "page": 201
+  },
+  {
+   "title": "Quantification of antimicrobial usage",
+   "page": 202
+  },
+  {
+   "title": "Statistical analysis",
+   "page": 203
+  },
+  {
+   "title": "RESULTS",
+   "page": 204
+  },
+  {
+   "title": "Initial production parameters and preventive measures",
+   "page": 205
+  },
+  {
+   "title": "Initial antimicrobial usage",
+   "page": 207
+  },
+  {
+   "title": "Interventions",
+   "page": 209
+  },
+  {
+   "title": "Visit 1 versus visit 3",
+   "page": 212
+  },
+  {
+   "title": "Active substances",
+   "page": 214
+  },
+  {
+   "title": "DISCUSSION",
+   "page": 216
+  },
+  {
+   "title": "CONCLUSION",
+   "page": 219
+  },
+  {
+   "title": "REFERENCES",
+   "page": 220
+  },
+  {
+   "title": "CHAPTER 8",
+   "page": 224
+  },
+  {
+   "title": "ANTIMICROBIAL USAGE IN PIG PRODUCTION: BELGIUM VERSUS EU",
+   "page": 225
+  },
+  {
+   "title": "THE WAY FORWARD: ANTIMICROBIAL USAGE QUANTIFICATION",
+   "page": 227
+  },
+  {
+   "title": "2. Standard weights",
+   "page": 229
+  },
+  {
+   "title": "3. Period at risk",
+   "page": 231
+  },
+  {
+   "title": "THE WAY FORWARD: BIOSECURITY \\& HERD MANAGEMENT",
+   "page": 232
+  },
+  {
+   "title": "2. The importance of biosecurity in animal health",
+   "page": 234
+  },
+  {
+   "title": "THE WAY FORWARD: BIOSECURITY HERD MANAGEMENT CHAPTER 8.3",
+   "page": 235
+  },
+  {
+   "title": "THE WAY FORWARD: BIOSECURITY HERD MANAGEMENT CHAPTER 8.3",
+   "page": 236
+  },
+  {
+   "title": "THE WAY FORWARD: BIOSECURITY HERD MANAGEMENT CHAPTER 8.3",
+   "page": 237
+  },
+  {
+   "title": "THE WAY FORWARD: BIOSECURITY HERD MANAGEMENT CHAPTER 8.3",
+   "page": 238
+  },
+  {
+   "title": "THE WAY FORWARD: BIOSECURITY HERD MANAGEMENT CHAPTER 8.3",
+   "page": 239
+  },
+  {
+   "title": "THE WAY FORWARD: COACHING",
+   "page": 240
+  },
+  {
+   "title": "2. Coaching in prudent AMU",
+   "page": 241
+  },
+  {
+   "title": "3. Research and policy",
+   "page": 242
+  },
+  {
+   "title": "REFERENCES",
+   "page": 243
+  },
+  {
+   "title": "CHAPTER 9",
+   "page": 276
+  },
+  {
+   "title": "CONCLUSION",
+   "page": 277
+  },
+  {
+   "title": "REDUCE",
+   "page": 278
+  },
+  {
+   "title": "CONCLUSION",
+   "page": 279
+  },
+  {
+   "title": "CHAPTER 9",
+   "page": 279
+  },
+  {
+   "title": "SUMMARY",
+   "page": 280
+  },
+  {
+   "title": "SAMENVATTING",
+   "page": 284
+  },
+  {
+   "title": "ACKNOWLEDGEMENTS / DANKWOORD",
+   "page": 289
+  },
+  {
+   "title": "CURRICULUM VITAE",
+   "page": 295
+  },
+  {
+   "title": "BIBLIOGRAPHY",
+   "page": 296
+  },
+  {
+   "title": "ORAL PRESENTATIONS",
+   "page": 299
+  },
+  {
+   "title": "POSTER PRESENTATIONS",
+   "page": 302
+  }
+ ]
+}

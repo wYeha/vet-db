@@ -1,0 +1,504 @@
+{
+ "slug": "antimicrobial_therapy_handbook",
+ "source_id": 3,
+ "num_pages": 675,
+ "chapters": [
+  {
+   "title": "SECTION I GENERAL PRINCIPLES OF ANTIMICROBIAL THERAPY",
+   "level": 1,
+   "start": 13,
+   "end": 14,
+   "method": "fuzzy0.85"
+  },
+  {
+   "title": "1 Antimicrobial Drug Action and Interaction: An Introduction",
+   "level": 1,
+   "start": 14,
+   "end": 22,
+   "method": "fuzzy1.00"
+  },
+  {
+   "title": "2 Antimicrobial Susceptibility Testing Methods and Interpretation of Results",
+   "level": 1,
+   "start": 22,
+   "end": 32,
+   "method": "fuzzy1.00"
+  },
+  {
+   "title": "3 Antimicrobial Resistance and Its Epidemiology",
+   "level": 1,
+   "start": 32,
+   "end": 52,
+   "method": "fuzzy1.00"
+  },
+  {
+   "title": "4 Principles of Antimicrobial Drug Bioavailability and Disposition",
+   "level": 1,
+   "start": 52,
+   "end": 89,
+   "method": "fuzzy1.00"
+  },
+  {
+   "title": "5 The Pharmacodynamics of Antimicrobial Agents",
+   "level": 1,
+   "start": 89,
+   "end": 114,
+   "method": "fuzzy1.00"
+  },
+  {
+   "title": "6 Principles of Antimicrobial Drug Selection and Use",
+   "level": 1,
+   "start": 114,
+   "end": 125,
+   "method": "fuzzy1.00"
+  },
+  {
+   "title": "7 Antimicrobial Stewardship in Animals",
+   "level": 1,
+   "start": 125,
+   "end": 141,
+   "method": "fuzzy1.00"
+  },
+  {
+   "title": "SECTION II CLASSES OF ANTIMICROBIAL AGENTS",
+   "level": 1,
+   "start": 141,
+   "end": 142,
+   "method": "fuzzy0.85"
+  },
+  {
+   "title": "8 Beta-lactam Antibiotics: Penam Penicillins",
+   "level": 1,
+   "start": 142,
+   "end": 160,
+   "method": "fuzzy1.00"
+  },
+  {
+   "title": "9 Beta-lactam Antibiotics: Cephalosporins",
+   "level": 1,
+   "start": 160,
+   "end": 181,
+   "method": "fuzzy1.00"
+  },
+  {
+   "title": "10 Other Beta-lactam Antibiotics: Beta-lactamase Inhibitors, Carbapenems, and Monobactams",
+   "level": 1,
+   "start": 181,
+   "end": 194,
+   "method": "fuzzy1.00"
+  },
+  {
+   "title": "11 Peptide Antibiotics: Polymyxins, Glycopeptides, Bacitracin, and Fosfomycin",
+   "level": 1,
+   "start": 194,
+   "end": 216,
+   "method": "fuzzy1.00"
+  },
+  {
+   "title": "12 Lincosamides, Pleuromutilins, and Streptogramins",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "13 Macrolides, Azalides, and Ketolides",
+   "level": 1,
+   "start": 216,
+   "end": 260,
+   "method": "fuzzy1.00"
+  },
+  {
+   "title": "14 Aminoglycosides and Aminocyclitols",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "15 Tetracyclines",
+   "level": 1,
+   "start": 260,
+   "end": 272,
+   "method": "fuzzy1.00"
+  },
+  {
+   "title": "16 Chloramphenicol, Thiamphenicol, and Florfenicol",
+   "level": 1,
+   "start": 272,
+   "end": 281,
+   "method": "fuzzy1.00"
+  },
+  {
+   "title": "17 Sulfonamides, Diaminopyrimidines, and Their Combinations",
+   "level": 1,
+   "start": 281,
+   "end": 359,
+   "method": "fuzzy1.00"
+  },
+  {
+   "title": "18 Fluoroquinolones",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "19 Miscellaneous Antimicrobials: Ionophores, Nitrofurans, Nitroimidazoles, Rifamycins, and Others",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "20 Antifungal Chemotherapy",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "21 Prophylactic Use of Antimicrobial Agents, and Antimicrobial Chemotherapy for the Neutropenic Patient",
+   "level": 1,
+   "start": 359,
+   "end": 379,
+   "method": "fuzzy1.00"
+  },
+  {
+   "title": "22 Performance Uses of Antimicrobial Agents and Non-antimicrobial Alternatives",
+   "level": 1,
+   "start": 379,
+   "end": 395,
+   "method": "fuzzy1.00"
+  },
+  {
+   "title": "23 Antimicrobial Therapy of Selected Organ Systems",
+   "level": 1,
+   "start": 395,
+   "end": 420,
+   "method": "fuzzy1.00"
+  },
+  {
+   "title": "24 Antimicrobial Therapy of Selected Bacterial Infections",
+   "level": 1,
+   "start": 420,
+   "end": 430,
+   "method": "fuzzy1.00"
+  },
+  {
+   "title": "25 Antimicrobial Drug Residues in Foods of Animal Origin",
+   "level": 1,
+   "start": 430,
+   "end": 441,
+   "method": "fuzzy1.00"
+  },
+  {
+   "title": "26 Regulation of Antimicrobial Use in Animals",
+   "level": 1,
+   "start": 441,
+   "end": 453,
+   "method": "fuzzy1.00"
+  },
+  {
+   "title": "27 Antimicrobial Drug Use in Horses",
+   "level": 1,
+   "start": 453,
+   "end": 469,
+   "method": "fuzzy1.00"
+  },
+  {
+   "title": "28 Antimicrobial Drug Use in Dogs and Cats",
+   "level": 1,
+   "start": 469,
+   "end": 491,
+   "method": "fuzzy1.00"
+  },
+  {
+   "title": "29 Antimicrobial Drug Use in Cattle",
+   "level": 1,
+   "start": 491,
+   "end": 515,
+   "method": "fuzzy1.00"
+  },
+  {
+   "title": "30 Antimicrobial Drug Use in Mastitis",
+   "level": 1,
+   "start": 515,
+   "end": 525,
+   "method": "fuzzy1.00"
+  },
+  {
+   "title": "31 Antimicrobial Drug Use in Sheep and Goats",
+   "level": 1,
+   "start": 525,
+   "end": 536,
+   "method": "fuzzy1.00"
+  },
+  {
+   "title": "32 Antimicrobial Drug Use in New World Camelids",
+   "level": 1,
+   "start": 536,
+   "end": 563,
+   "method": "fuzzy1.00"
+  },
+  {
+   "title": "33 Antimicrobial Drug Use in Swine",
+   "level": 1,
+   "start": 563,
+   "end": 616,
+   "method": "fuzzy0.60"
+  },
+  {
+   "title": "34 Antimicrobial Drug Use in Poultry",
+   "level": 1,
+   "start": 616,
+   "end": 637,
+   "method": "fuzzy0.60"
+  },
+  {
+   "title": "35 Antimicrobial Drug Use in Companion Birds",
+   "level": 1,
+   "start": 637,
+   "end": 675,
+   "method": "fuzzy0.50"
+  },
+  {
+   "title": "36 Antimicrobial Drug Use in Rabbits, Rodents, and Ferrets",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "37 Antimicrobial Drug Use in Reptiles",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "38 Antimicrobial Drug Use in Zoological Animals",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "39 Antimicrobial Drug Use in Aquaculture",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  }
+ ],
+ "markdown_headings": [
+  {
+   "title": "Antimicrobial Therapy in Veterinary Medicine",
+   "page": 0
+  },
+  {
+   "title": "Antimicrobial Therapy in Veterinary Medicine",
+   "page": 1
+  },
+  {
+   "title": "Contents",
+   "page": 3
+  },
+  {
+   "title": "Contributors",
+   "page": 6
+  },
+  {
+   "title": "Preface",
+   "page": 10
+  },
+  {
+   "title": "Important Notice",
+   "page": 11
+  },
+  {
+   "title": "Abbreviations",
+   "page": 12
+  },
+  {
+   "title": "Section I",
+   "page": 13
+  },
+  {
+   "title": "Antimicrobial Drug Action and Interaction: An Introduction",
+   "page": 14
+  },
+  {
+   "title": "Antimicrobial Susceptibility Testing Methods and Interpretation of Results",
+   "page": 22
+  },
+  {
+   "title": "Antimicrobial Resistance and Its Epidemiology",
+   "page": 32
+  },
+  {
+   "title": "Principles of Antimicrobial Drug Bioavailability and Disposition",
+   "page": 52
+  },
+  {
+   "title": "The Pharmacodynamics of Antimicrobial Agents",
+   "page": 89
+  },
+  {
+   "title": "DISEASE",
+   "page": 104
+  },
+  {
+   "title": "Principles of Antimicrobial Drug Selection and Use",
+   "page": 114
+  },
+  {
+   "title": "Antimicrobial Stewardship in Animals",
+   "page": 125
+  },
+  {
+   "title": "Section II",
+   "page": 141
+  },
+  {
+   "title": "Beta-lactam Antibiotics: Penam Penicillins",
+   "page": 142
+  },
+  {
+   "title": "Beta-lactam Antibiotics: Cephalosporins",
+   "page": 160
+  },
+  {
+   "title": "Other Beta-lactam Antibiotics: Beta-lactamase Inhibitors, Carbapenems, and Monobactams",
+   "page": 181
+  },
+  {
+   "title": "Peptide Antibiotics: Polymyxins, Glycopeptides, Bacitracin, and Fosfomycin",
+   "page": 194
+  },
+  {
+   "title": "12",
+   "page": 204
+  },
+  {
+   "title": "Macrolides, Azalides, and Ketolides",
+   "page": 216
+  },
+  {
+   "title": "14",
+   "page": 237
+  },
+  {
+   "title": "Tetracyclines",
+   "page": 260
+  },
+  {
+   "title": "Chloramphenicol, Thiamphenicol, and Florfenicol",
+   "page": 272
+  },
+  {
+   "title": "Sulfonamides, Diaminopyrimidines, and Their Combinations",
+   "page": 281
+  },
+  {
+   "title": "18",
+   "page": 297
+  },
+  {
+   "title": "19",
+   "page": 317
+  },
+  {
+   "title": "20",
+   "page": 335
+  },
+  {
+   "title": "Section III",
+   "page": 358
+  },
+  {
+   "title": "Prophylactic Use of Antimicrobial Agents, and Antimicrobial Chemotherapy for the Neutropenic Patient",
+   "page": 359
+  },
+  {
+   "title": "Performance Uses of Antimicrobial Agents and Non-antimicrobial Alternatives",
+   "page": 379
+  },
+  {
+   "title": "Antimicrobial Therapy of Selected Organ Systems",
+   "page": 395
+  },
+  {
+   "title": "Antimicrobial Therapy of Selected Bacterial Infections",
+   "page": 420
+  },
+  {
+   "title": "Antimicrobial Drug Residues in Foods of Animal Origin",
+   "page": 430
+  },
+  {
+   "title": "Regulation of Antimicrobial Use in Animals",
+   "page": 441
+  },
+  {
+   "title": "Section IV",
+   "page": 452
+  },
+  {
+   "title": "Antimicrobial Drug Use in Horses",
+   "page": 453
+  },
+  {
+   "title": "Antimicrobial Drug Use in Dogs and Cats",
+   "page": 469
+  },
+  {
+   "title": "Antimicrobial Drug Use in Cattle",
+   "page": 491
+  },
+  {
+   "title": "Antimicrobial Drug Use in Mastitis",
+   "page": 515
+  },
+  {
+   "title": "Antimicrobial Drug Use in Sheep and Goats",
+   "page": 525
+  },
+  {
+   "title": "Antimicrobial Drug Use in New World Camelids",
+   "page": 536
+  },
+  {
+   "title": "33",
+   "page": 547
+  },
+  {
+   "title": "Antimicrobial Drug Use in Poultry",
+   "page": 563
+  },
+  {
+   "title": "Antimicrobial Drug Use in Companion Birds",
+   "page": 582
+  },
+  {
+   "title": "36",
+   "page": 594
+  },
+  {
+   "title": "Antimicrobial Drug Use in Reptiles",
+   "page": 616
+  },
+  {
+   "title": "Antimicrobial Drug Use in Zoological Animals",
+   "page": 630
+  },
+  {
+   "title": "Antimicrobial Drug Use in Aquaculture",
+   "page": 637
+  },
+  {
+   "title": "Index",
+   "page": 654
+  }
+ ]
+}

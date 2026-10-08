@@ -1,0 +1,543 @@
+{
+ "slug": "practical_guide_to_broiler_health_management",
+ "source_id": 19,
+ "num_pages": 533,
+ "chapters": [
+  {
+   "title": "Введение",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Распознавание болезни",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Осмотр стаи",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Кривые смертности",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Клиническая проверка отдельных бройлеров",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Некропсия",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Лабораторные исследования",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Роль серологического мониторинга",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Период обслуживания",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Биологическая безопасность",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Управление кормлением",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Управление питьевой водой",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Вентиляция",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Уход за подстилкой для птиц",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Однородность цыплят",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Факторы стресса",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Прореживание",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Эпидемиология",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Пневмовирус птиц",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Аспергиллез",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Коллибактериоз",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Инфекционный ренит",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Микоплазмоз",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Орнитобактериоз",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Пастереллез",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Galt",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Кандидоз",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Кокцидиоз",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Дисбактериоз",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Тиф птиц и пуллороз",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Эрозия мышечного желудка",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Гепатит синдром гидроперикардита",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Инфекционный гепатит",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Синдром мальабсорбции",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Некротические энтерит",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Провентрикулит",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Синдром задержки роста(сзр)",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Сальмонеллез",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Синдром асцита",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Синдром внезапной смерти",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Подагра",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Болезнь гамборо",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Микотоксины",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Некроз головки бедренной кости",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Планетарный подорматит",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Спондилолистез",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Дисхондроплазия большой берцовой кости",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Рахит",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Энцефаломиелит птиц",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Болезнь марека",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  }
+ ],
+ "markdown_headings": [
+  {
+   "title": "ГЛАВА 1",
+   "page": 0
+  },
+  {
+   "title": "ГЛАВА 1",
+   "page": 2
+  },
+  {
+   "title": "ГЛАВА 2",
+   "page": 9
+  },
+  {
+   "title": "ОБЩЕЕ РАСПОЗНАВАНИЕ ЗАБОЛЕВАНИЯ",
+   "page": 9
+  },
+  {
+   "title": "ГЛАВА 2-5",
+   "page": 54
+  },
+  {
+   "title": "ГЛАВА 2-6",
+   "page": 87
+  },
+  {
+   "title": "ГЛАВА 2 - ОБЩЕЕ РАСПОЗНАВАНИЕ ЗАБОЛЕВАНИЯ",
+   "page": 102
+  },
+  {
+   "title": "ГЛАВА 2 - ОБЩЕЕ РАСПОЗНАВАНИЕ ЗАБОЛЕВАНИЯ",
+   "page": 104
+  },
+  {
+   "title": "ГЛАВА 3",
+   "page": 114
+  },
+  {
+   "title": "ОХРАНА СОСТОЯНИЯ ЗДОРОВЬЯ БРОЙЛЕРОВ",
+   "page": 114
+  },
+  {
+   "title": "ГЛАВА 3-5",
+   "page": 143
+  },
+  {
+   "title": "ГЛАВА 3-6",
+   "page": 152
+  },
+  {
+   "title": "ГЛАВА 3-7",
+   "page": 159
+  },
+  {
+   "title": "ГЛАВА 3-8",
+   "page": 167
+  },
+  {
+   "title": "ГЛАВА 3-9",
+   "page": 175
+  },
+  {
+   "title": "ГЛАВА 3-10",
+   "page": 178
+  },
+  {
+   "title": "ГЛАВА 4-2",
+   "page": 187
+  },
+  {
+   "title": "ГЛАВА 4-3",
+   "page": 206
+  },
+  {
+   "title": "ГЛАВА 4-4",
+   "page": 215
+  },
+  {
+   "title": "ГЛАВА 4-6",
+   "page": 243
+  },
+  {
+   "title": "ГЛАВА 4-8",
+   "page": 249
+  },
+  {
+   "title": "ГЛАВА 4-10",
+   "page": 265
+  },
+  {
+   "title": "ГЛАВА 4-11",
+   "page": 271
+  },
+  {
+   "title": "ГЛАВА 5",
+   "page": 279
+  },
+  {
+   "title": "ГЛАВА 5-2",
+   "page": 287
+  },
+  {
+   "title": "ГЛАВА 5-3",
+   "page": 291
+  },
+  {
+   "title": "ГЛАВА 5-4",
+   "page": 322
+  },
+  {
+   "title": "ГЛАВА 5-5",
+   "page": 329
+  },
+  {
+   "title": "ГЛАВА 5-6",
+   "page": 336
+  },
+  {
+   "title": "ГЛАВА 5-7",
+   "page": 344
+  },
+  {
+   "title": "ГЛАВА 5-8",
+   "page": 347
+  },
+  {
+   "title": "ГЛАВА 5-9",
+   "page": 355
+  },
+  {
+   "title": "ГЛАВА 5-10",
+   "page": 370
+  },
+  {
+   "title": "ГЛАВА 5-11",
+   "page": 393
+  },
+  {
+   "title": "ГЛАВА 5-12",
+   "page": 403
+  },
+  {
+   "title": "ГЛАВА 5-13",
+   "page": 415
+  },
+  {
+   "title": "ГЛАВА 6",
+   "page": 430
+  },
+  {
+   "title": "Нарушение обмена веществ",
+   "page": 430
+  },
+  {
+   "title": "ГЛАВА 7-2",
+   "page": 446
+  },
+  {
+   "title": "ГЛАВА 7-3",
+   "page": 464
+  },
+  {
+   "title": "ГЛАВА 8",
+   "page": 475
+  },
+  {
+   "title": "ЗАБОЛЕВАНИЯ ОПОРНО-ДВИГАТЕЛЬНОЙ СИСТЕМЫ",
+   "page": 475
+  },
+  {
+   "title": "ГЛАВА 8-4",
+   "page": 498
+  },
+  {
+   "title": "ГЛАВА 8-5",
+   "page": 506
+  },
+  {
+   "title": "ГЛАВА 9",
+   "page": 511
+  },
+  {
+   "title": "ГЛАВА 10",
+   "page": 519
+  }
+ ]
+}

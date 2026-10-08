@@ -1,0 +1,1301 @@
+{
+ "slug": "avian_pathology",
+ "source_id": 7,
+ "num_pages": 305,
+ "chapters": [
+  {
+   "title": "Taxonomy of Avian Species",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Immunity and Inflammation in Birds",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Avian Salmonellosis",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Paratyphoid Infections",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Arizonosis",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Avian Mycoplasmosis",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Colibacillosis / Escherichia Coli Infections",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Fowl Cholera",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Riemerella Anatipestifer Infection",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Erysipelas",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Yersinia Pseudotuberculosis (Pasteurella Pseudotuberculosis)",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Campylobacter Infections",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Spirochetosis",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Avian Intestinal Spirochetosis",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Clostridial Infections",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Infectious Coryza (Fowl Coryza)",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Ornithobacterium Rhinotracheale Infection",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Bardetellosis (Turkey Coryza)",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Mycobacteriosis",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Chlamydiosis",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Omphalitis (Navel ill, Mushy chick disease)",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Staphylococcosis",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Streptococcus",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Enterococcosis",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Newcastle Disease (ND; Avian Pneumoencephalitis)",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Pneumovirus Infections",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Infectious Laryngotracheitis (Laryngotracheitis, ILT; LT)",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Infectious Anemia (Chicken Anemia Agent [CAA] infection)",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Adenovirus Infections of Chickens",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Quail Bronchitis (QB)",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Inclusion Body Hepatitis (IBH; Adenoviral Infection)",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Hydropericardium Syndrome (HS)",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "EGG Drop Syndrome 1976 (EDS 76)",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Viral Arthritis",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Fowl Pox (Pox; Avian Pox)",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Infectious Bursal Disease (IBD; Gumboro Disease)",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Marek’s Disease",
+   "level": 1,
+   "start": 182,
+   "end": 249,
+   "method": "fuzzy0.85"
+  },
+  {
+   "title": "Avian Leukosis (LL) (Lymphoid Leukosis, LL)",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Myelocytomatosis",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Reticuloendotheliosis",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Avian Nephritis",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Avian Influenza (AI; Influenza; Fowl Plague)",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Avian Encephalomyelitis",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Coronaviral Enteritis of Turkeys (CVE) (Blue comb disease, mud fever, transmissible enteritis, infectious enteritis)",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Hemorrhagic Enteritis of Turkeys (HE; BLOODY GUT)",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Duck Virus Enteritis (DVE, Duck Plague)",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Duck Virus Hepatitis (DVH)",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Eastern Equine Encephalitis (Eee) Virus Infection",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "West Nile Virus (WNV)",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Aspergillosis (Brooder pneumonia)",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Candidiasis (Thrush; Mycosis of Digestive Tract)",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Cryptococcosis",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Dermatophytosis (FAVUS)",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Mycotoxicosis",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Coccidiosis",
+   "level": 1,
+   "start": 249,
+   "end": 305,
+   "method": "fuzzy0.85"
+  },
+  {
+   "title": "Cryptosporidiosis",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Histomoniasis (Black Head; Enterohepatitis)",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Trichomoniasis",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Toxoplasmosis",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Nematodes (Round Worms)",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Tapeworms (Cestodes)",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Blood Borne Parasite",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Ectoparasites",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Vitamin Deficiency",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Mineral Deficiency",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Bumble Foot (Pododermatitis/ Planter absces)",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Cage Layer Fatigue (Osteoporosis)",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Stunting Runting Syndrome",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Ascites Syndrome (Water belly, Right ventricular failure, Hypertension syndrome)",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Hypoglycemia-Spiking Mortality Syndrome of Broiler Chickens (HSMS)",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Proventricular Dilatation of Broiler Chickens",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Round Heart Disease of Chickens and Turkeys (Dilated cardiomyopathy)",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  }
+ ],
+ "markdown_headings": [
+  {
+   "title": "AVIAN PATHOLOGY",
+   "page": 2
+  },
+  {
+   "title": "About the Authors",
+   "page": 3
+  },
+  {
+   "title": "AVIAN PATHOLOGY",
+   "page": 6
+  },
+  {
+   "title": "NEW INDIA PUBLISHING AGENCY",
+   "page": 7
+  },
+  {
+   "title": "DEDICATION",
+   "page": 8
+  },
+  {
+   "title": "Preface",
+   "page": 10
+  },
+  {
+   "title": "Contents",
+   "page": 12
+  },
+  {
+   "title": "Section-7: Miscellaneous Disorders",
+   "page": 15
+  },
+  {
+   "title": "SECTION-1",
+   "page": 16
+  },
+  {
+   "title": "Glossary of Poultry Terms",
+   "page": 18
+  },
+  {
+   "title": "$\\mathbf{R}$",
+   "page": 32
+  },
+  {
+   "title": "Birds Frequently Kept as Pets",
+   "page": 38
+  },
+  {
+   "title": "Cytokines",
+   "page": 41
+  },
+  {
+   "title": "Transfer of Immunity from Hens",
+   "page": 42
+  },
+  {
+   "title": "Antimicrobial property of Heterophils",
+   "page": 43
+  },
+  {
+   "title": "SECTION-2",
+   "page": 46
+  },
+  {
+   "title": "Transmission",
+   "page": 49
+  },
+  {
+   "title": "- Adults",
+   "page": 50
+  },
+  {
+   "title": "Adults",
+   "page": 51
+  },
+  {
+   "title": "Treatment",
+   "page": 54
+  },
+  {
+   "title": "Transmission",
+   "page": 57
+  },
+  {
+   "title": "Gross Lesions",
+   "page": 58
+  },
+  {
+   "title": "Treatment",
+   "page": 59
+  },
+  {
+   "title": "Lesions",
+   "page": 61
+  },
+  {
+   "title": "Clinical Signs",
+   "page": 63
+  },
+  {
+   "title": "In turkeys",
+   "page": 64
+  },
+  {
+   "title": "Prevention and Control",
+   "page": 65
+  },
+  {
+   "title": "Diagnosis",
+   "page": 66
+  },
+  {
+   "title": "Gross Lesions",
+   "page": 67
+  },
+  {
+   "title": "Treatment",
+   "page": 70
+  },
+  {
+   "title": "A. Early embryo mortality and chick mortality",
+   "page": 73
+  },
+  {
+   "title": "B. Early embryo mortality and chick mortality",
+   "page": 74
+  },
+  {
+   "title": "2. Air sac disease",
+   "page": 75
+  },
+  {
+   "title": "4. Coli granuloma (Hjarre's disease)",
+   "page": 77
+  },
+  {
+   "title": "Treatment",
+   "page": 78
+  },
+  {
+   "title": "Gross Lesions",
+   "page": 81
+  },
+  {
+   "title": "10",
+   "page": 84
+  },
+  {
+   "title": "Diagnosis and Differential Diagnosis",
+   "page": 85
+  },
+  {
+   "title": "11",
+   "page": 86
+  },
+  {
+   "title": "Lesions",
+   "page": 87
+  },
+  {
+   "title": "12",
+   "page": 88
+  },
+  {
+   "title": "13",
+   "page": 90
+  },
+  {
+   "title": "Clinical Signs",
+   "page": 91
+  },
+  {
+   "title": "Vaccination",
+   "page": 92
+  },
+  {
+   "title": "14",
+   "page": 94
+  },
+  {
+   "title": "Diagnosis",
+   "page": 95
+  },
+  {
+   "title": "15",
+   "page": 96
+  },
+  {
+   "title": "Diagnosis",
+   "page": 97
+  },
+  {
+   "title": "16",
+   "page": 98
+  },
+  {
+   "title": "Diagnosis",
+   "page": 99
+  },
+  {
+   "title": "Treatment and Prevention",
+   "page": 100
+  },
+  {
+   "title": "Epizootiology",
+   "page": 101
+  },
+  {
+   "title": "17",
+   "page": 102
+  },
+  {
+   "title": "Diagnosis",
+   "page": 103
+  },
+  {
+   "title": "18",
+   "page": 104
+  },
+  {
+   "title": "Pathology",
+   "page": 105
+  },
+  {
+   "title": "19",
+   "page": 106
+  },
+  {
+   "title": "Lesions",
+   "page": 107
+  },
+  {
+   "title": "20",
+   "page": 108
+  },
+  {
+   "title": "Clinical Signs",
+   "page": 109
+  },
+  {
+   "title": "Diagnosis",
+   "page": 110
+  },
+  {
+   "title": "21",
+   "page": 112
+  },
+  {
+   "title": "Transmission",
+   "page": 113
+  },
+  {
+   "title": "In Psittacines",
+   "page": 114
+  },
+  {
+   "title": "Serology",
+   "page": 116
+  },
+  {
+   "title": "22",
+   "page": 118
+  },
+  {
+   "title": "Treatment",
+   "page": 119
+  },
+  {
+   "title": "23",
+   "page": 120
+  },
+  {
+   "title": "Diagnosis",
+   "page": 121
+  },
+  {
+   "title": "24",
+   "page": 122
+  },
+  {
+   "title": "Diagnosis",
+   "page": 123
+  },
+  {
+   "title": "25",
+   "page": 124
+  },
+  {
+   "title": "Diagnosis",
+   "page": 125
+  },
+  {
+   "title": "SECTION-3",
+   "page": 126
+  },
+  {
+   "title": "26",
+   "page": 128
+  },
+  {
+   "title": "Pathogenesis",
+   "page": 129
+  },
+  {
+   "title": "Gross Lesions",
+   "page": 131
+  },
+  {
+   "title": "Differential Diagnosis",
+   "page": 133
+  },
+  {
+   "title": "27",
+   "page": 134
+  },
+  {
+   "title": "Clinical Signs",
+   "page": 135
+  },
+  {
+   "title": "Differential Diagnosis",
+   "page": 136
+  },
+  {
+   "title": "28",
+   "page": 138
+  },
+  {
+   "title": "Lesions",
+   "page": 139
+  },
+  {
+   "title": "Treatment",
+   "page": 141
+  },
+  {
+   "title": "29",
+   "page": 142
+  },
+  {
+   "title": "A. In young chicks",
+   "page": 143
+  },
+  {
+   "title": "Diagnosis",
+   "page": 145
+  },
+  {
+   "title": "Prevention and Control",
+   "page": 146
+  },
+  {
+   "title": "30",
+   "page": 148
+  },
+  {
+   "title": "Gross Lesions",
+   "page": 149
+  },
+  {
+   "title": "31",
+   "page": 152
+  },
+  {
+   "title": "32",
+   "page": 154
+  },
+  {
+   "title": "No vaccine is available.",
+   "page": 155
+  },
+  {
+   "title": "33",
+   "page": 156
+  },
+  {
+   "title": "Clinical Signs",
+   "page": 157
+  },
+  {
+   "title": "Prevention and Control",
+   "page": 158
+  },
+  {
+   "title": "34",
+   "page": 160
+  },
+  {
+   "title": "35",
+   "page": 162
+  },
+  {
+   "title": "Clinical Signs",
+   "page": 163
+  },
+  {
+   "title": "Diagnosis",
+   "page": 164
+  },
+  {
+   "title": "36",
+   "page": 166
+  },
+  {
+   "title": "Gross Lesions",
+   "page": 167
+  },
+  {
+   "title": "37",
+   "page": 170
+  },
+  {
+   "title": "b) Diphtheritic Form",
+   "page": 171
+  },
+  {
+   "title": "Prevention and Control",
+   "page": 173
+  },
+  {
+   "title": "38",
+   "page": 174
+  },
+  {
+   "title": "Gross Lesions",
+   "page": 175
+  },
+  {
+   "title": "Prevention and Control",
+   "page": 178
+  },
+  {
+   "title": "39",
+   "page": 180
+  },
+  {
+   "title": "Clinical Signs",
+   "page": 181
+  },
+  {
+   "title": "Transmission of Marek's Disease",
+   "page": 182
+  },
+  {
+   "title": "2) Nerves",
+   "page": 183
+  },
+  {
+   "title": "Differential Diagnosis",
+   "page": 186
+  },
+  {
+   "title": "40",
+   "page": 188
+  },
+  {
+   "title": "Transmission",
+   "page": 189
+  },
+  {
+   "title": "Lesions Gross",
+   "page": 190
+  },
+  {
+   "title": "Histopathology",
+   "page": 191
+  },
+  {
+   "title": "Prevention and Control",
+   "page": 192
+  },
+  {
+   "title": "41",
+   "page": 194
+  },
+  {
+   "title": "42",
+   "page": 196
+  },
+  {
+   "title": "Lesions",
+   "page": 197
+  },
+  {
+   "title": "43",
+   "page": 198
+  },
+  {
+   "title": "Differential Diagnosis",
+   "page": 199
+  },
+  {
+   "title": "44",
+   "page": 200
+  },
+  {
+   "title": "Clinical Signs",
+   "page": 201
+  },
+  {
+   "title": "MPAI Viruses",
+   "page": 202
+  },
+  {
+   "title": "Long Term Action",
+   "page": 203
+  },
+  {
+   "title": "45",
+   "page": 204
+  },
+  {
+   "title": "Clinical Signs",
+   "page": 205
+  },
+  {
+   "title": "Specimens required for Diagnosis",
+   "page": 206
+  },
+  {
+   "title": "46",
+   "page": 208
+  },
+  {
+   "title": "Diagnosis",
+   "page": 209
+  },
+  {
+   "title": "47",
+   "page": 210
+  },
+  {
+   "title": "Lesions",
+   "page": 211
+  },
+  {
+   "title": "48",
+   "page": 212
+  },
+  {
+   "title": "Lesions",
+   "page": 213
+  },
+  {
+   "title": "49",
+   "page": 216
+  },
+  {
+   "title": "- DVH 3",
+   "page": 217
+  },
+  {
+   "title": "Treatment",
+   "page": 219
+  },
+  {
+   "title": "50",
+   "page": 220
+  },
+  {
+   "title": "Clinical Signs and Lesions",
+   "page": 221
+  },
+  {
+   "title": "Control",
+   "page": 222
+  },
+  {
+   "title": "51",
+   "page": 224
+  },
+  {
+   "title": "Diagnosis",
+   "page": 225
+  },
+  {
+   "title": "SECTION-4 <br> Fungal Diseases",
+   "page": 226
+  },
+  {
+   "title": "52",
+   "page": 228
+  },
+  {
+   "title": "Lesions",
+   "page": 229
+  },
+  {
+   "title": "53",
+   "page": 232
+  },
+  {
+   "title": "54",
+   "page": 234
+  },
+  {
+   "title": "Prevention and Control",
+   "page": 235
+  },
+  {
+   "title": "55",
+   "page": 236
+  },
+  {
+   "title": "56",
+   "page": 238
+  },
+  {
+   "title": "OCHRATOXICOSIS",
+   "page": 239
+  },
+  {
+   "title": "SECTION-5 <br> Parasitic Diseases",
+   "page": 240
+  },
+  {
+   "title": "57",
+   "page": 242
+  },
+  {
+   "title": "Clinical Signs",
+   "page": 243
+  },
+  {
+   "title": "Differential Characteristic of six species of Chicken Coccidia",
+   "page": 247
+  },
+  {
+   "title": "Water medication is usually preferred over feed medication for treatment.",
+   "page": 248
+  },
+  {
+   "title": "Coccidiosis in Turkeys",
+   "page": 249
+  },
+  {
+   "title": "Coccidiosis in pet birds",
+   "page": 250
+  },
+  {
+   "title": "58",
+   "page": 252
+  },
+  {
+   "title": "Control",
+   "page": 253
+  },
+  {
+   "title": "59",
+   "page": 254
+  },
+  {
+   "title": "Diagnosis",
+   "page": 255
+  },
+  {
+   "title": "60",
+   "page": 256
+  },
+  {
+   "title": "Treatment",
+   "page": 257
+  },
+  {
+   "title": "61",
+   "page": 258
+  },
+  {
+   "title": "Clinical signs and lesions",
+   "page": 259
+  },
+  {
+   "title": "62",
+   "page": 260
+  },
+  {
+   "title": "Control",
+   "page": 261
+  },
+  {
+   "title": "63",
+   "page": 262
+  },
+  {
+   "title": "Control",
+   "page": 263
+  },
+  {
+   "title": "64",
+   "page": 264
+  },
+  {
+   "title": "Clinical Signs and Lesions",
+   "page": 265
+  },
+  {
+   "title": "65",
+   "page": 266
+  },
+  {
+   "title": "BUGS",
+   "page": 267
+  },
+  {
+   "title": "a) Chicken mite Dermanyssus gallinae (red mite, roost mite, poultry mite)",
+   "page": 268
+  },
+  {
+   "title": "f) Scaly leg mite",
+   "page": 269
+  },
+  {
+   "title": "SECTION-6 <br> Deficiency Diseases",
+   "page": 270
+  },
+  {
+   "title": "66",
+   "page": 272
+  },
+  {
+   "title": "Clinical symptoms and pathological picture of deficiency",
+   "page": 273
+  },
+  {
+   "title": "67",
+   "page": 278
+  },
+  {
+   "title": "Recommended per Kg of feed",
+   "page": 279
+  },
+  {
+   "title": "SELENIUM",
+   "page": 280
+  },
+  {
+   "title": "SECTION-7 <br> Miscellaneous Disorders",
+   "page": 282
+  },
+  {
+   "title": "68",
+   "page": 284
+  },
+  {
+   "title": "69",
+   "page": 286
+  },
+  {
+   "title": "70",
+   "page": 288
+  },
+  {
+   "title": "71",
+   "page": 290
+  },
+  {
+   "title": "Diagnosis",
+   "page": 291
+  },
+  {
+   "title": "72",
+   "page": 292
+  },
+  {
+   "title": "73",
+   "page": 294
+  },
+  {
+   "title": "74",
+   "page": 296
+  },
+  {
+   "title": "B. Feather Pecking",
+   "page": 297
+  },
+  {
+   "title": "- Consequences",
+   "page": 298
+  },
+  {
+   "title": "Index",
+   "page": 300
+  },
+  {
+   "title": "AVIAN PATHOLOGY A COLOUR HANDBOOK",
+   "page": 304
+  }
+ ]
+}

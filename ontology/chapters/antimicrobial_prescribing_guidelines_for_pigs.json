@@ -1,0 +1,160 @@
+{
+ "slug": "antimicrobial_prescribing_guidelines_for_pigs",
+ "source_id": 2,
+ "num_pages": 60,
+ "chapters": [
+  {
+   "title": "Core principles of appropriate use of antimicrobial agents",
+   "level": 1,
+   "start": 8,
+   "end": 60,
+   "method": "exact"
+  },
+  {
+   "title": "1. Antimicrobial stewardship guidelines for veterinarians working with pigs",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "2. Lameness in neonatal pigs in the first week of life",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "3. Diseases where the main clinical sign is diarrhoea in newborn pigs up to four days of age",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "4. Diseases where the main clinical sign is diarrhoea from five days of age until weaning",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "5. Diseases where the main clinical sign is diarrhoea after weaning",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "6. Diseases where the main clinical sign is coughing",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "7. Diseases where the main clinical sign is sudden death in pigs between weaning and ten weeks of age",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "8. Diseases where the main clinical signs are skin lesions",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  }
+ ],
+ "markdown_headings": [
+  {
+   "title": "Antimicrobial prescribing guidelines for pigs",
+   "page": 0
+  },
+  {
+   "title": "Acknowledgements",
+   "page": 1
+  },
+  {
+   "title": "Dr Ross Cutler BVSc PHD",
+   "page": 3
+  },
+  {
+   "title": "Professor Jacqueline Norris BVSc MVS, PhD, MASM, MASID Grad Cert Higher Ed.",
+   "page": 4
+  },
+  {
+   "title": "The 5R Framework for Good Antimicrobial Stewardship",
+   "page": 5
+  },
+  {
+   "title": "Contents",
+   "page": 6
+  },
+  {
+   "title": "Core principles of appropriate use of antimicrobial agents",
+   "page": 8
+  },
+  {
+   "title": "Core principles of appropriate use of antimicrobial agents",
+   "page": 9
+  },
+  {
+   "title": "Core principles of appropriate use of antimicrobial agents",
+   "page": 10
+  },
+  {
+   "title": "References",
+   "page": 11
+  },
+  {
+   "title": "2.5. Treatment",
+   "page": 26
+  },
+  {
+   "title": "3.8. Case study: Using vaccines to reduce the severity of $E$. coli disease in neonatal pigs",
+   "page": 31
+  },
+  {
+   "title": "3.9. Case study: Eliminating ceftiofur use on a pig farm",
+   "page": 32
+  },
+  {
+   "title": "5.3. Preventative strategy",
+   "page": 38
+  },
+  {
+   "title": "5.7. Case study: Controlling Lawsonia intracellularis",
+   "page": 42
+  },
+  {
+   "title": "6.7. Case study: Reducing antimicrobial use for respiratory disease in growing and finishing pigs",
+   "page": 45
+  },
+  {
+   "title": "7.1. History and predominant clinical signs",
+   "page": 47
+  },
+  {
+   "title": "7.7. Case study: Controlling systemic disease in weaner pigs without antimicrobials",
+   "page": 49
+  },
+  {
+   "title": "Age: All ages",
+   "page": 51
+  },
+  {
+   "title": "8.4. Preventative strategy",
+   "page": 52
+  },
+  {
+   "title": "8.8. Case study: Reducing trim loss at slaughter without sustained antimicrobial use in finishing pigs",
+   "page": 53
+  },
+  {
+   "title": "REFERENCES",
+   "page": 54
+  }
+ ]
+}

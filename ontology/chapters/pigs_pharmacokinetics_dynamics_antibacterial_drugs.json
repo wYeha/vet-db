@@ -1,0 +1,329 @@
+{
+ "slug": "pigs_pharmacokinetics_dynamics_antibacterial_drugs",
+ "source_id": 17,
+ "num_pages": 144,
+ "chapters": [
+  {
+   "title": "Chapter 1. Antimicrobial use in pigs and their pharmacokinetic / pharmacodynamic (PK/PD) relationships",
+   "level": 1,
+   "start": 14,
+   "end": 33,
+   "method": "exact"
+  },
+  {
+   "title": "Chapter 2. PK/PD relationship analysis and integration for respiratory infections",
+   "level": 1,
+   "start": 33,
+   "end": 76,
+   "method": "exact"
+  },
+  {
+   "title": "Chapter 3. PK/PD integration for enteric diseases",
+   "level": 1,
+   "start": 76,
+   "end": 126,
+   "method": "exact"
+  },
+  {
+   "title": "Chapter 4. Overall Conclusions and Discussion",
+   "level": 1,
+   "start": 126,
+   "end": 144,
+   "method": "exact"
+  }
+ ],
+ "markdown_headings": [
+  {
+   "title": "Abstract",
+   "page": 2
+  },
+  {
+   "title": "List of tables",
+   "page": 3
+  },
+  {
+   "title": "List of figures",
+   "page": 7
+  },
+  {
+   "title": "List of abbreviations",
+   "page": 11
+  },
+  {
+   "title": "Common calculations",
+   "page": 12
+  },
+  {
+   "title": "Acknowledgements",
+   "page": 13
+  },
+  {
+   "title": "Chapter 1. Antimicrobial use in pigs and their pharmacokinetic / pharmacodynamic (PK/PD) relationships",
+   "page": 14
+  },
+  {
+   "title": "Respiratory infections",
+   "page": 16
+  },
+  {
+   "title": "Bacteria that cause septicaemia in pigs",
+   "page": 17
+  },
+  {
+   "title": "1.3 Antimicrobial use in pigs",
+   "page": 18
+  },
+  {
+   "title": "1.4 Improving antimicrobial understanding and use with PK/PD relationship analysis",
+   "page": 23
+  },
+  {
+   "title": "1.5 Basic pharmacokinetic parameters used for PK/PD integration and modelling",
+   "page": 25
+  },
+  {
+   "title": "Pharmacodynamics",
+   "page": 27
+  },
+  {
+   "title": "1.6 Antimicrobial resistance overview",
+   "page": 29
+  },
+  {
+   "title": "Resistance mechanisms",
+   "page": 30
+  },
+  {
+   "title": "Chapter 2. PK/PD relationship analysis and integration for respiratory infections",
+   "page": 33
+  },
+  {
+   "title": "Characteristics of enzootic pneumonia",
+   "page": 34
+  },
+  {
+   "title": "Comparative antimicrobial activity (pharmacodynamics)",
+   "page": 36
+  },
+  {
+   "title": "Comparative antimicrobial efficacy",
+   "page": 38
+  },
+  {
+   "title": "Comparative pharmacokinetic information",
+   "page": 43
+  },
+  {
+   "title": "Pharmacokinetic/pharmacodynamic relationships",
+   "page": 44
+  },
+  {
+   "title": "Discussion and Conclusions",
+   "page": 48
+  },
+  {
+   "title": "Calculations and example for tiamulin (DB)",
+   "page": 50
+  },
+  {
+   "title": "Enrofloxacin:",
+   "page": 52
+  },
+  {
+   "title": "Oxytetracycline:",
+   "page": 53
+  },
+  {
+   "title": "Tilmicosin:",
+   "page": 54
+  },
+  {
+   "title": "Tulathromycin:",
+   "page": 55
+  },
+  {
+   "title": "Pharmacodynamics of various antimicrobial drugs on respiratory associated bacteria",
+   "page": 58
+  },
+  {
+   "title": "Clinical efficacy of antimicrobial drugs against bacterial respiratory infections",
+   "page": 62
+  },
+  {
+   "title": "Enrofloxacin:",
+   "page": 63
+  },
+  {
+   "title": "Tiamulin:",
+   "page": 64
+  },
+  {
+   "title": "Tilmicosin:",
+   "page": 65
+  },
+  {
+   "title": "Tulathromycin:",
+   "page": 66
+  },
+  {
+   "title": "Enrofloxacin:",
+   "page": 69
+  },
+  {
+   "title": "Oxytetracycline:",
+   "page": 70
+  },
+  {
+   "title": "Tiamulin:",
+   "page": 71
+  },
+  {
+   "title": "Tilmicosin:",
+   "page": 72
+  },
+  {
+   "title": "Tulathromycin:",
+   "page": 73
+  },
+  {
+   "title": "Conclusions",
+   "page": 74
+  },
+  {
+   "title": "Chapter 3. PK/PD integration for enteric diseases",
+   "page": 76
+  },
+  {
+   "title": "Refining the gastro-intestinal tract drug concentration model (Refinement DB)",
+   "page": 78
+  },
+  {
+   "title": "3.3 Small intestinal infections - Escherichia coli",
+   "page": 82
+  },
+  {
+   "title": "Tetracycline",
+   "page": 85
+  },
+  {
+   "title": "Trimethoprim and sulphonamides",
+   "page": 87
+  },
+  {
+   "title": "Pharmacokinetic / pharmacodynamic relationships (Analysis DB)",
+   "page": 89
+  },
+  {
+   "title": "Non-absorbed compounds:",
+   "page": 90
+  },
+  {
+   "title": "Neomycin",
+   "page": 91
+  },
+  {
+   "title": "Colistin",
+   "page": 92
+  },
+  {
+   "title": "Conclusions",
+   "page": 93
+  },
+  {
+   "title": "3.4 Ileal infections - Lawsonia intracellularis",
+   "page": 94
+  },
+  {
+   "title": "Pharmacodynamics",
+   "page": 97
+  },
+  {
+   "title": "Pharmacokinetic/pharmacodynamic relationships",
+   "page": 100
+  },
+  {
+   "title": "Lincomycin",
+   "page": 101
+  },
+  {
+   "title": "Tiamulin and valnemulin",
+   "page": 102
+  },
+  {
+   "title": "Tylosin",
+   "page": 103
+  },
+  {
+   "title": "Lincomycin",
+   "page": 106
+  },
+  {
+   "title": "Discussion and Conclusions",
+   "page": 107
+  },
+  {
+   "title": "3.5 Colonic bacterial infections - Brachyspira hyodysenteriae and B. pilosicoli",
+   "page": 108
+  },
+  {
+   "title": "Pharmacodynamics of various antibiotics against B. hyodysenteriae and B. pilosicoli",
+   "page": 110
+  },
+  {
+   "title": "Tylosin",
+   "page": 111
+  },
+  {
+   "title": "Valnemulin",
+   "page": 112
+  },
+  {
+   "title": "Tiamulin",
+   "page": 113
+  },
+  {
+   "title": "Tylvalosin",
+   "page": 114
+  },
+  {
+   "title": "Brachyspira pilosicoli",
+   "page": 115
+  },
+  {
+   "title": "Clinical correlation of dose, effect and MIC/MBC",
+   "page": 116
+  },
+  {
+   "title": "Valnemulin",
+   "page": 117
+  },
+  {
+   "title": "Tiamulin",
+   "page": 119
+  },
+  {
+   "title": "Lincomycin",
+   "page": 120
+  },
+  {
+   "title": "Tylosin",
+   "page": 123
+  },
+  {
+   "title": "Conclusions",
+   "page": 124
+  },
+  {
+   "title": "Chapter 4. Overall Conclusions and Discussion",
+   "page": 126
+  },
+  {
+   "title": "References (Refereed)",
+   "page": 129
+  },
+  {
+   "title": "References (*Non refereed)",
+   "page": 137
+  }
+ ]
+}

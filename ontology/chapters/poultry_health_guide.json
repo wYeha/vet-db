@@ -1,0 +1,547 @@
+{
+ "slug": "poultry_health_guide",
+ "source_id": 18,
+ "num_pages": 350,
+ "chapters": [
+  {
+   "title": "Basic Anatomy and Physiology",
+   "level": 1,
+   "start": 14,
+   "end": 33,
+   "method": "exact"
+  },
+  {
+   "title": "The Immune System of the Chicken",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "The Genetics of Disease Resistance in Poultry",
+   "level": 1,
+   "start": 33,
+   "end": 38,
+   "method": "exact"
+  },
+  {
+   "title": "The Poultry Industry",
+   "level": 1,
+   "start": 38,
+   "end": 42,
+   "method": "exact"
+  },
+  {
+   "title": "The Broiler Industry and Management of Broilers and Broiler Parents",
+   "level": 1,
+   "start": 42,
+   "end": 48,
+   "method": "exact"
+  },
+  {
+   "title": "The Commercial Layer Industry, Management and Disease",
+   "level": 1,
+   "start": 48,
+   "end": 55,
+   "method": "exact"
+  },
+  {
+   "title": "Backyard (Pet) Poultry",
+   "level": 1,
+   "start": 55,
+   "end": 65,
+   "method": "exact"
+  },
+  {
+   "title": "The Turkey Industry and Disease",
+   "level": 1,
+   "start": 65,
+   "end": 79,
+   "method": "fuzzy0.85"
+  },
+  {
+   "title": "The Duck Industry and Diseases",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Diseases of Gamebirds",
+   "level": 1,
+   "start": 79,
+   "end": 92,
+   "method": "exact"
+  },
+  {
+   "title": "Hatchery Practice",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Feeding Poultry and Potential Problems Associated with Die",
+   "level": 1,
+   "start": 92,
+   "end": 105,
+   "method": "fuzzy0.85"
+  },
+  {
+   "title": "Skeletal Problem",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Mycobacterium and Avian Tuberculosis",
+   "level": 1,
+   "start": 105,
+   "end": 108,
+   "method": "fuzzy0.85"
+  },
+  {
+   "title": "Avian Pathogenic Escherichia col",
+   "level": 1,
+   "start": 108,
+   "end": 113,
+   "method": "fuzzy0.85"
+  },
+  {
+   "title": "Campylobacter",
+   "level": 1,
+   "start": 113,
+   "end": 118,
+   "method": "fuzzy0.85"
+  },
+  {
+   "title": "Salmonella",
+   "level": 1,
+   "start": 118,
+   "end": 125,
+   "method": "fuzzy0.85"
+  },
+  {
+   "title": "Clostridium and Necrotic Enteriti",
+   "level": 1,
+   "start": 125,
+   "end": 133,
+   "method": "fuzzy0.85"
+  },
+  {
+   "title": "Pasteurella and Related Organisms",
+   "level": 1,
+   "start": 133,
+   "end": 144,
+   "method": "fuzzy0.85"
+  },
+  {
+   "title": "Brachyspira – Avian Intestinal Spirochaetosis",
+   "level": 1,
+   "start": 144,
+   "end": 151,
+   "method": "fuzzy0.85"
+  },
+  {
+   "title": "Mycoplasmas",
+   "level": 1,
+   "start": 151,
+   "end": 159,
+   "method": "fuzzy0.85"
+  },
+  {
+   "title": "Miscellaneous Bacterial Infections",
+   "level": 1,
+   "start": 159,
+   "end": 163,
+   "method": "fuzzy0.85"
+  },
+  {
+   "title": "Avian Reoviruses – Viral Arthritis",
+   "level": 1,
+   "start": 163,
+   "end": 168,
+   "method": "exact"
+  },
+  {
+   "title": "Infectious Avian Encephalomyelitis",
+   "level": 1,
+   "start": 168,
+   "end": 171,
+   "method": "fuzzy0.85"
+  },
+  {
+   "title": "Adenoviruses",
+   "level": 1,
+   "start": 171,
+   "end": 180,
+   "method": "fuzzy0.85"
+  },
+  {
+   "title": "Infectious Laryngotracheitis",
+   "level": 1,
+   "start": 180,
+   "end": 185,
+   "method": "fuzzy0.85"
+  },
+  {
+   "title": "Infectious Bursal Disease",
+   "level": 1,
+   "start": 185,
+   "end": 191,
+   "method": "fuzzy0.85"
+  },
+  {
+   "title": "Avian Astroviruses",
+   "level": 1,
+   "start": 191,
+   "end": 197,
+   "method": "fuzzy0.85"
+  },
+  {
+   "title": "Avian Influenza",
+   "level": 1,
+   "start": 197,
+   "end": 213,
+   "method": "exact"
+  },
+  {
+   "title": "Newcastle Disease",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Avian Metapneumovirus Infection",
+   "level": 1,
+   "start": 213,
+   "end": 221,
+   "method": "fuzzy0.85"
+  },
+  {
+   "title": "Infectious Bronchitis",
+   "level": 1,
+   "start": 221,
+   "end": 228,
+   "method": "fuzzy0.85"
+  },
+  {
+   "title": "Chicken Anaemia Virus and Circoviruses",
+   "level": 1,
+   "start": 228,
+   "end": 236,
+   "method": "fuzzy0.85"
+  },
+  {
+   "title": "Avian Leukosis and Reticuloendotheliosis",
+   "level": 1,
+   "start": 236,
+   "end": 240,
+   "method": "fuzzy0.85"
+  },
+  {
+   "title": "Marek’s Disease",
+   "level": 1,
+   "start": 240,
+   "end": 249,
+   "method": "fuzzy0.85"
+  },
+  {
+   "title": "Fowlpox",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Coccidiosis",
+   "level": 1,
+   "start": 249,
+   "end": 262,
+   "method": "fuzzy0.85"
+  },
+  {
+   "title": "Histomoniasis (Blackhead Disease)",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Other Important Parasites",
+   "level": 1,
+   "start": 262,
+   "end": 270,
+   "method": "fuzzy0.85"
+  },
+  {
+   "title": "The Chicken Microbiota and How to Modulate It",
+   "level": 1,
+   "start": 270,
+   "end": 276,
+   "method": "fuzzy1.00"
+  },
+  {
+   "title": "Biosecurity",
+   "level": 1,
+   "start": 276,
+   "end": 294,
+   "method": "fuzzy1.00"
+  },
+  {
+   "title": "Poultry Chemotherapy and Antimicrobials",
+   "level": 1,
+   "start": null,
+   "end": null,
+   "method": "unmatched"
+  },
+  {
+   "title": "Vaccination Strategies and Application of Vaccines",
+   "level": 1,
+   "start": 294,
+   "end": 305,
+   "method": "exact"
+  },
+  {
+   "title": "How to Carry Out a Field Investigation",
+   "level": 1,
+   "start": 305,
+   "end": 310,
+   "method": "fuzzy1.00"
+  },
+  {
+   "title": "Laboratory Diagnosis of Poultry Diseases",
+   "level": 1,
+   "start": 310,
+   "end": 327,
+   "method": "fuzzy1.00"
+  },
+  {
+   "title": "Legislation",
+   "level": 1,
+   "start": 327,
+   "end": 350,
+   "method": "fuzzy1.00"
+  }
+ ],
+ "markdown_headings": [
+  {
+   "title": "Poultry Health A Guide for Professionals",
+   "page": 0
+  },
+  {
+   "title": "Poultry Health",
+   "page": 2
+  },
+  {
+   "title": "Poultry Health",
+   "page": 4
+  },
+  {
+   "title": "CABI is a trading name of CAB International",
+   "page": 5
+  },
+  {
+   "title": "Contents",
+   "page": 6
+  },
+  {
+   "title": "List of Contributors",
+   "page": 10
+  },
+  {
+   "title": "Preface",
+   "page": 12
+  },
+  {
+   "title": "Basic Anatomy and Physiology",
+   "page": 14
+  },
+  {
+   "title": "The Genetics of Disease Resistance in Poultry",
+   "page": 33
+  },
+  {
+   "title": "The Poultry Industry",
+   "page": 38
+  },
+  {
+   "title": "The Broiler Industry and Management of Broilers and Broiler Parents",
+   "page": 42
+  },
+  {
+   "title": "The Commercial Layer Industry, Management and Disease",
+   "page": 48
+  },
+  {
+   "title": "Backyard (Pet) Poultry",
+   "page": 55
+  },
+  {
+   "title": "8 The Turkey Industry and Diseases",
+   "page": 65
+  },
+  {
+   "title": "Diseases of Gamebirds",
+   "page": 79
+  },
+  {
+   "title": "11",
+   "page": 85
+  },
+  {
+   "title": "12 <br> Feeding Poultry and Potential Problems Associated with Diet",
+   "page": 92
+  },
+  {
+   "title": "13",
+   "page": 99
+  },
+  {
+   "title": "14i <br> Mycobacterium and Avian Tuberculosis",
+   "page": 105
+  },
+  {
+   "title": "Avian Pathogenic Escherichia coli",
+   "page": 108
+  },
+  {
+   "title": "14ii <br> Campylobacter",
+   "page": 113
+  },
+  {
+   "title": "14iv Salmonella",
+   "page": 118
+  },
+  {
+   "title": "14V Clostridium and Necrotic Enteritis",
+   "page": 125
+  },
+  {
+   "title": "14vi Pasteurella and Related Organisms",
+   "page": 133
+  },
+  {
+   "title": "14vii Brachyspira - Avian Intestinal Spirochaetosis",
+   "page": 144
+  },
+  {
+   "title": "14viii Mycoplasmas",
+   "page": 151
+  },
+  {
+   "title": "14ix Miscellaneous Bacterial Infections",
+   "page": 159
+  },
+  {
+   "title": "Avian Reoviruses - Viral Arthritis",
+   "page": 163
+  },
+  {
+   "title": "15ii Infectious Avian Encephalomyelitis",
+   "page": 168
+  },
+  {
+   "title": "15ili Adenoviruses",
+   "page": 171
+  },
+  {
+   "title": "15iv Infectious Laryngotracheitis",
+   "page": 180
+  },
+  {
+   "title": "15v Infectious Bursal Disease",
+   "page": 185
+  },
+  {
+   "title": "15vi Avian Astroviruses",
+   "page": 191
+  },
+  {
+   "title": "Avian Influenza",
+   "page": 197
+  },
+  {
+   "title": "15viii",
+   "page": 206
+  },
+  {
+   "title": "15ix Avian Metapneumovirus Infection",
+   "page": 213
+  },
+  {
+   "title": "15x Infectious Bronchitis",
+   "page": 221
+  },
+  {
+   "title": "15xi Chicken Anaemia Virus and Circoviruses",
+   "page": 228
+  },
+  {
+   "title": "15xii Avian Leukosis and Reticuloendotheliosis",
+   "page": 236
+  },
+  {
+   "title": "15xiii Marek's Disease",
+   "page": 240
+  },
+  {
+   "title": "15xiv",
+   "page": 244
+  },
+  {
+   "title": "16i <br> Coccidiosis",
+   "page": 249
+  },
+  {
+   "title": "16ii",
+   "page": 256
+  },
+  {
+   "title": "16ii Other Important Parasites",
+   "page": 262
+  },
+  {
+   "title": "17 <br> The Chicken Microbiota and How to Modulate It",
+   "page": 270
+  },
+  {
+   "title": "18 Biosecurity",
+   "page": 276
+  },
+  {
+   "title": "19",
+   "page": 287
+  },
+  {
+   "title": "Vaccination Strategies and Application of Vaccines",
+   "page": 294
+  },
+  {
+   "title": "21 <br> How to Carry Out a Field Investigation",
+   "page": 305
+  },
+  {
+   "title": "22 <br> Laboratory Diagnosis of Poultry Diseases",
+   "page": 310
+  },
+  {
+   "title": "23 Legislation",
+   "page": 327
+  },
+  {
+   "title": "Index",
+   "page": 334
+  },
+  {
+   "title": "Discover more",
+   "page": 348
+  },
+  {
+   "title": "Poultry Health A Guide for Professionals",
+   "page": 349
+  }
+ ]
+}
