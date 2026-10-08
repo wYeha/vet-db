@@ -63,6 +63,9 @@ class ChatRequest(BaseModel):
     history: Optional[List[ChatMessage]] = None
     # Необязательный тред: если не задан/не найден — создаётся новая беседа.
     conversation_id: Optional[int] = None
+    # Режим ретрива: "ontology" — навигация по онтологии через LLM (по умолчанию);
+    # "vector" — заглушка (эндпоинт вернёт 501 до вызова LLM, бюджет не тратится).
+    mode: Optional[Literal["ontology", "vector"]] = "ontology"
 
 
 class ChatUsage(BaseModel):

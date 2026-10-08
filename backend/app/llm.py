@@ -59,6 +59,11 @@ def chat_completion(
     if tools:
         payload["tools"] = tools
         payload["tool_choice"] = tool_choice or "auto"
+    if config.LLM_DISABLE_REASONING:
+        # deepseek-flash — reasoning-модель: без отключения весь max_tokens уходит
+        # в reasoning, content приходит пустым. Для наших коротких grounded-ответов
+        # рассуждения не нужны — так дешевле и content не теряется.
+        payload["reasoning"] = {"enabled": False}
 
     headers = {
         # Ключ берём только из конфига; заголовок нигде не логируем.

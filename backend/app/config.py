@@ -76,6 +76,28 @@ LLM_TOOL_MODE = os.environ.get("LLM_TOOL_MODE", "inline")
 LLM_DAILY_BUDGET_RUB = float(os.environ.get("LLM_DAILY_BUDGET_RUB", "100"))
 # Грубая оценка стоимости 1К токенов (руб.) — для суточного гарда.
 LLM_RUB_PER_1K_TOKENS = float(os.environ.get("LLM_RUB_PER_1K_TOKENS", "0.2"))
+# Подмешивать ли карту онтологии (смысловые аннотации книг/глав) в inline-чат.
+# Локальный SQL по уже открытому read-only соединению, без новых LLM-вызовов.
+LLM_USE_ONTOLOGY = os.environ.get("LLM_USE_ONTOLOGY", "1").strip().lower() not in (
+    "0",
+    "false",
+    "no",
+    "off",
+    "",
+)
+# Отключать ли «рассуждения» (reasoning) у модели. deepseek-*-flash — reasoning-
+# модель: без этого весь бюджет max_tokens уходит в reasoning-токены, а content
+# приходит пустым (finish_reason=length) → чат сваливается в generic-заглушку.
+# Для навигации по онтологии chain-of-thought не нужен: с reasoning=off ответ
+# приходит сразу и запрос дешевле (~в 10 раз). Передаётся как {"reasoning":
+# {"enabled": false}} (OpenRouter-совместимо; RouterAI это поддерживает).
+LLM_DISABLE_REASONING = os.environ.get("LLM_DISABLE_REASONING", "1").strip().lower() not in (
+    "0",
+    "false",
+    "no",
+    "off",
+    "",
+)
 
 # Ассистент считается сконфигурированным только при наличии ключа, URL и модели.
 LLM_CONFIGURED = bool(LLM_API_KEY and LLM_BASE_URL and LLM_MODEL)

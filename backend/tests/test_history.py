@@ -31,13 +31,22 @@ def _isolated(monkeypatch, tmp_path):
     chat_mod._budget["date"] = None
     chat_mod._budget["tokens"] = 0
 
-    # Детерминированный поиск: один хит.
+    # Детерминированный поиск: один хит (для inline-пути, mode=None).
     monkeypatch.setattr(
         chat_mod, "_run_search",
         lambda *a, **k: [
             SearchHit(type="page", source_id=1, source_title="Книга",
                       page_index=4, snippet="<mark>текст</mark>", score=-1.0)
         ],
+    )
+    # Детерминированная онтология: один хит (для дефолтного mode=ontology).
+    monkeypatch.setattr(
+        chat_mod, "search_ontology",
+        lambda *a, **k: [{
+            "source_id": 1, "source_slug": "book1", "source_title": "Книга",
+            "chapter_title": "Глава", "page_index": 4, "kind": "chapter",
+            "snippet": "<mark>текст</mark>", "score": -1.0,
+        }],
     )
     yield
 
@@ -60,8 +69,9 @@ def _mock_llm(monkeypatch, answer="Нашёл источник."):
 
 
 def test_chat_creates_conversation_and_saves_two_messages(monkeypatch):
+    # mode=None → inline-путь с текстовым ответом модели (персист проверяем на нём).
     _mock_llm(monkeypatch, "Ответ 1.")
-    r = client.post("/api/chat", json={"message": "антибиотик для собаки"})
+    r = client.post("/api/chat", json={"message": "антибиотик для собаки", "mode": None})
     assert r.status_code == 200
     body = r.json()
     conv_id = body["conversation_id"]
@@ -85,14 +95,33 @@ def test_chat_creates_conversation_and_saves_two_messages(monkeypatch):
     assert msgs[1]["usage"] is not None
 
 
+def test_ontology_mode_persists_hits_with_empty_answer(monkeypatch):
+    # Дефолтный mode=ontology: модель выводов не пишет (answer=""), но user- и
+    # assistant-реплики сохраняются, и у assistant в истории лежат хиты.
+    _mock_llm(monkeypatch)  # 1-й ответ (ключевые слова) — этого достаточно
+    r = client.post("/api/chat", json={"message": "стрептококкоз"})
+    assert r.status_code == 200
+    body = r.json()
+    assert body["answer"] == ""
+    assert len(body["hits"]) == 1
+    conv_id = body["conversation_id"]
+
+    detail = client.get(f"/api/conversations/{conv_id}").json()
+    msgs = detail["messages"]
+    assert [m["role"] for m in msgs] == ["user", "assistant"]
+    assert msgs[1]["content"] == ""
+    assert len(msgs[1]["hits"]) == 1
+    assert msgs[1]["hits"][0]["source_id"] == 1
+
+
 def test_continue_existing_conversation(monkeypatch):
     _mock_llm(monkeypatch, "Первый.")
-    first = client.post("/api/chat", json={"message": "вопрос 1"}).json()
+    first = client.post("/api/chat", json={"message": "вопрос 1", "mode": None}).json()
     conv_id = first["conversation_id"]
 
     _mock_llm(monkeypatch, "Второй.")
     second = client.post(
-        "/api/chat", json={"message": "вопрос 2", "conversation_id": conv_id}
+        "/api/chat", json={"message": "вопрос 2", "conversation_id": conv_id, "mode": None}
     ).json()
     assert second["conversation_id"] == conv_id
 
@@ -135,7 +164,7 @@ def test_history_write_error_does_not_break_response(monkeypatch):
 
     monkeypatch.setattr(history, "create_conversation", boom)
 
-    r = client.post("/api/chat", json={"message": "тест сбоя записи"})
+    r = client.post("/api/chat", json={"message": "тест сбоя записи", "mode": None})
     assert r.status_code == 200
     assert r.json()["answer"] == "Ответ несмотря на сбой."
     # ничего не сохранилось, но ответ отдан

@@ -31,6 +31,8 @@ pip install -r backend/requirements.txt
 | `LLM_TOOL_MODE` | нет         | `inline`                                           | `inline` (keywords→FTS→ответ) \| `tools` |
 | `LLM_DAILY_BUDGET_RUB`| нет   | `100`                                              | суточный бюджет-гард, ₽            |
 | `LLM_RUB_PER_1K_TOKENS`| нет  | `0.2`                                              | оценка стоимости 1К токенов, ₽    |
+| `LLM_USE_ONTOLOGY`| нет      | `1`                                                | подмешивать карту онтологии в inline-чат (0=выкл) |
+| `LLM_DISABLE_REASONING`| нет | `1`                                              | отключить reasoning модели (deepseek-flash: иначе `content` пустой; 0=не отключать) |
 
 Ключи S3 и LLM в коде не хранятся; секреты — только в env/`backend/.env`
 (в `.gitignore`). Без `LLM_*` эндпоинт `/api/chat` отдаёт 503. Для локальной разработки можно создать `.env` в корне
@@ -62,7 +64,7 @@ cd backend && uvicorn app.main:app --reload --port 8000
 | GET   | `/api/preparations/{id}`            | карточка препарата + instruction_md                   |
 | GET   | `/api/diseases`                     | список болезней; фильтр `species=avian\|swine`        |
 | GET   | `/api/diseases/{id}`                | карточка болезни (data — структура из yml)            |
-| POST  | `/api/chat`                         | чат «найти источник» (LLM над FTS); 503 без ключа; принимает необязательный `conversation_id`, возвращает его в ответе |
+| POST  | `/api/chat`                         | чат «найти источник»; `mode=ontology` (дефолт, LLM над картой онтологии) / `vector` (→501) / `None` (LLM над FTS); 503 без ключа; принимает необязательный `conversation_id`, возвращает его в ответе |
 | GET   | `/api/conversations`                | список бесед (новые сверху); `limit` (≤200), `offset` |
 | GET   | `/api/conversations/{id}`           | сообщения беседы по порядку; 404 если беседы нет      |
 
@@ -75,11 +77,19 @@ cd backend && uvicorn app.main:app --reload --port 8000
   (79 записей); для galen они пустые — фильтр ожидаемо отсекает galen.
 - **PDF.** Ключ S3 подписывается в исходном виде (cp1251/utf8 не трогаем). Без
   заданных `AK`/`SK` эндпоинт `/pdf` вернёт 503.
-- **Чат «найти источник».** `POST /api/chat` `{message, history?, conversation_id?}`
-  → `{answer, hits, usage, conversation_id}`. Модель через function calling зовёт
-  наш FTS-поиск, отбирает хиты и даёт короткий ответ со ссылками. Без `LLM_*` →
-  503; при исчерпании суточного бюджета → 429. Контент из поиска подаётся модели
-  как ДАННЫЕ (анти-инъекция OCR). Заголовок Authorization не логируется.
+- **Чат «найти источник».** `POST /api/chat`
+  `{message, history?, conversation_id?, mode?}` → `{answer, hits, usage,
+  conversation_id}`. Поле `mode` (три-экранная модель поиска):
+  - `mode=ontology` (**дефолт**) — ретрив по «карте онтологии» (`search_ontology`,
+    без контентного FTS): модель подсказывает, какую книгу/главу/страницу смотреть.
+  - `mode=vector` — заглушка векторного поиска: **501** ДО бюджет-гарда и вызова LLM
+    (бюджет не тратится).
+  - `mode` не задан (`None`) — старый путь: модель зовёт наш FTS-поиск (inline или
+    function calling), отбирает хиты и даёт короткий ответ со ссылками. Фронт этот
+    путь не использует.
+  Без `LLM_*` → 503; при исчерпании суточного бюджета → 429; ошибка LLM → 502.
+  Контент/аннотации из ретрива подаются модели как ДАННЫЕ (анти-инъекция OCR).
+  Заголовок Authorization не логируется.
 - **История чатов.** Хранится в отдельной writable-БД `data/history.db` (SQLite,
   WAL), НЕ в `index.db` (тот read-only и пересобирается из S3). После успешного
   ответа user- и assistant-реплики (с hits/usage) сохраняются best-effort: ошибка

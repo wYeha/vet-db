@@ -5,7 +5,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from . import config, history
-from .routers import chat, conversations, diseases, preparations, search, sources
+from .routers import chat, conversations, diseases, ontology, preparations, search, sources
 
 # Инициализация writable-БД истории чатов (создаёт data/ и схему при отсутствии).
 # index.db не затрагивается — это отдельный файл (см. history.py).
@@ -27,6 +27,7 @@ app.include_router(preparations.router)
 app.include_router(diseases.router)
 app.include_router(chat.router)
 app.include_router(conversations.router)
+app.include_router(ontology.router)
 
 
 @app.get("/api/health")

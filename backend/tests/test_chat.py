@@ -84,7 +84,8 @@ def test_happy_path_tool_then_answer(monkeypatch):
 
     monkeypatch.setattr(chat_mod.llm, "chat_completion", fake)
 
-    r = client.post("/api/chat", json={"message": "антибиотик для собаки"})
+    # mode=None → ретрив по контентному FTS (старый tools-путь), не онтология
+    r = client.post("/api/chat", json={"message": "антибиотик для собаки", "mode": None})
     assert r.status_code == 200
     body = r.json()
     assert body["answer"] == "Нашёл: Книга, стр. 5."
@@ -108,7 +109,7 @@ def test_loop_limit_forces_finalization(monkeypatch):
 
     monkeypatch.setattr(chat_mod.llm, "chat_completion", always_tool)
 
-    r = client.post("/api/chat", json={"message": "зациклись"})
+    r = client.post("/api/chat", json={"message": "зациклись", "mode": None})
     assert r.status_code == 200
     # max_iters=2 → 2 итерации с tool + 1 финальная = 3 вызова модели
     assert calls["n"] == 3
@@ -168,7 +169,7 @@ def test_bad_tool_args_do_not_crash(monkeypatch):
     monkeypatch.setattr(chat_mod.llm, "chat_completion", fake)
     # реальный _run_search (не мок), чтобы проверить защиту парсинга аргументов
     monkeypatch.setattr(chat_mod, "_run_search", _ORIG_RUN_SEARCH)
-    r = client.post("/api/chat", json={"message": "поиск"})
+    r = client.post("/api/chat", json={"message": "поиск", "mode": None})
     assert r.status_code == 200
     assert r.json()["answer"] == "Готово."
 
@@ -196,7 +197,10 @@ def test_inline_extracts_keywords_then_searches(monkeypatch):
     monkeypatch.setattr(chat_mod.llm, "chat_completion", fake)
     monkeypatch.setattr(chat_mod, "_run_search", rec_search)
 
-    r = client.post("/api/chat", json={"message": "Что почитать про сальмонеллёз у птицы?"})
+    r = client.post(
+        "/api/chat",
+        json={"message": "Что почитать про сальмонеллёз у птицы?", "mode": None},
+    )
     assert r.status_code == 200
     body = r.json()
     # поиск шёл по ИЗВЛЕЧЁННЫМ ключевым словам, а не по сырому вопросу
@@ -229,7 +233,10 @@ def test_inline_or_fallback_when_and_empty(monkeypatch):
     monkeypatch.setattr(chat_mod.llm, "chat_completion", fake)
     monkeypatch.setattr(chat_mod, "_run_search", rec_search)
 
-    r = client.post("/api/chat", json={"message": "чем кормить при сальмонеллёзе птиц?"})
+    r = client.post(
+        "/api/chat",
+        json={"message": "чем кормить при сальмонеллёзе птиц?", "mode": None},
+    )
     assert r.status_code == 200
     body = r.json()
     # сначала AND (пусто), затем OR-фолбэк (нашлось)
@@ -269,7 +276,7 @@ def test_inline_merges_or_when_and_thin(monkeypatch):
     monkeypatch.setattr(chat_mod.llm, "chat_completion", fake)
     monkeypatch.setattr(chat_mod, "_run_search", rec_search)
 
-    r = client.post("/api/chat", json={"message": "стрептококкоз"})
+    r = client.post("/api/chat", json={"message": "стрептококкоз", "mode": None})
     assert r.status_code == 200
     body = r.json()
     # запускались оба режима: сначала AND, затем OR
@@ -311,12 +318,104 @@ def test_inline_no_or_when_and_rich(monkeypatch):
     monkeypatch.setattr(chat_mod.llm, "chat_completion", fake)
     monkeypatch.setattr(chat_mod, "_run_search", rec_search)
 
-    r = client.post("/api/chat", json={"message": "доза ампициллина собаке"})
+    r = client.post("/api/chat", json={"message": "доза ампициллина собаке", "mode": None})
     assert r.status_code == 200
     body = r.json()
     # OR не запускался: только один (AND) вызов поиска
     assert modes == [False]
     assert len(body["hits"]) == 3
+
+
+def test_vector_mode_returns_501_before_llm_and_budget(monkeypatch):
+    # Вектор-режим: 501 ДО бюджет-гарда и любого вызова LLM (бюджет не тратим).
+    # Бюджет обнулён — если бы гард сработал, был бы 429; ждём именно 501.
+    monkeypatch.setattr(config, "LLM_DAILY_BUDGET_RUB", 0.0)
+
+    def boom(messages, tools=None, tool_choice=None):
+        raise AssertionError("LLM не должен вызываться в вектор-режиме")
+
+    monkeypatch.setattr(chat_mod.llm, "chat_completion", boom)
+
+    r = client.post("/api/chat", json={"message": "что-нибудь", "mode": "vector"})
+    assert r.status_code == 501
+    assert "вектор" in r.json()["detail"].lower()
+
+
+def test_ontology_mode_uses_search_ontology_not_fts(monkeypatch):
+    # Онтология-режим: ретрив ТОЛЬКО по search_ontology, контентный _run_search не зовём.
+    # Модель зовётся ОДИН раз (только ключевые слова); выводов не пишет, ответ пустой.
+    responses = [_final_msg("стрептококкоз свиньи")]
+    calls = {"n": 0}
+
+    def fake(messages, tools=None, tool_choice=None):
+        i = calls["n"]
+        calls["n"] += 1
+        return responses[i]
+
+    def boom_search(*a, **k):
+        raise AssertionError("контентный FTS не должен вызываться в онтология-режиме")
+
+    def fake_ontology(db, q, limit=20):
+        return [
+            {
+                "source_id": 3, "source_slug": "book3", "source_title": "К1",
+                "chapter_title": "Стрептококкозы", "page_index": 12, "kind": "chapter",
+                "snippet": "<mark>стрептококкоз</mark>", "score": -1.0,
+            },
+            {
+                "source_id": 3, "source_slug": "book3", "source_title": "К1",
+                "chapter_title": None, "page_index": None, "kind": "book",
+                "snippet": "<mark>о книге</mark>", "score": -0.5,
+            },
+        ]
+
+    monkeypatch.setattr(chat_mod.llm, "chat_completion", fake)
+    monkeypatch.setattr(chat_mod, "_run_search", boom_search)
+    monkeypatch.setattr(chat_mod, "search_ontology", fake_ontology)
+
+    r = client.post("/api/chat", json={"message": "стрептококкоз у свиней", "mode": "ontology"})
+    assert r.status_code == 200
+    body = r.json()
+    # ровно 1 LLM-вызов (ключевые слова); ответа-вывода модель НЕ пишет
+    assert calls["n"] == 1
+    assert body["answer"] == ""
+    # строки онтологии смаплены в SearchHit(type=page) — это и есть результат
+    hits = body["hits"]
+    assert len(hits) == 2
+    assert hits[0]["type"] == "page"
+    assert hits[0]["source_id"] == 3
+    assert hits[0]["page_index"] == 12
+    assert hits[0]["title"] == "Стрептококкозы"
+    # уровень книги: page_index=None, пометка «о книге»
+    assert hits[1]["page_index"] is None
+    assert hits[1]["title"] == "о книге"
+
+
+def test_ontology_mode_survives_missing_ontology_fts(monkeypatch):
+    # Старый index.db без ontology_fts → OperationalError не роняет режим (пустая карта).
+    import sqlite3 as _sqlite3
+
+    responses = [_final_msg("ключевые слова")]
+    calls = {"n": 0}
+
+    def fake(messages, tools=None, tool_choice=None):
+        i = calls["n"]
+        calls["n"] += 1
+        return responses[i]
+
+    def raise_op(db, q, limit=20):
+        raise _sqlite3.OperationalError("no such table: ontology_fts")
+
+    monkeypatch.setattr(chat_mod.llm, "chat_completion", fake)
+    monkeypatch.setattr(chat_mod, "search_ontology", raise_op)
+
+    r = client.post("/api/chat", json={"message": "что-нибудь", "mode": "ontology"})
+    assert r.status_code == 200
+    body = r.json()
+    # ровно 1 LLM-вызов (ключевые слова), карта пуста → нет хитов и нет ответа
+    assert calls["n"] == 1
+    assert body["hits"] == []
+    assert body["answer"] == ""
 
 
 def test_health_reports_llm_configured(monkeypatch):
