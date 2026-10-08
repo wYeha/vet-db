@@ -3,6 +3,18 @@ import { ref, onMounted, nextTick } from 'vue'
 import { api } from '../api/client'
 import ConfirmModal from '../components/ConfirmModal.vue'
 
+// Обобщённый чат-компонент. Режим ретрива задаётся через prop `mode`
+// (передаётся в /api/chat). Тексты интерфейса — через title/placeholder/emptyHint.
+const props = defineProps({
+  mode: { type: String, default: 'ontology' },
+  title: { type: String, default: 'Ассистент поиска' },
+  placeholder: { type: String, default: 'Например: чем лечить парвовироз у щенка?' },
+  emptyHint: {
+    type: String,
+    default: 'Опишите, что ищете — ассистент найдёт источник и страницу.',
+  },
+})
+
 // messages: { role: 'user'|'assistant', text, hits?, error? }
 const messages = ref([])
 const input = ref('')
@@ -93,7 +105,12 @@ async function send() {
   loading.value = true
   await scrollDown()
   try {
-    const res = await api.chat({ message: text, history, conversation_id: conversationId.value })
+    const res = await api.chat({
+      message: text,
+      history,
+      conversation_id: conversationId.value,
+      mode: props.mode,
+    })
     messages.value.push({
       role: 'assistant',
       text: res.answer || '',
@@ -125,8 +142,12 @@ function hitLink(h) {
 
 function hitTitle(h) {
   if (h.type === 'page') {
-    const p = h.page_index != null ? ` → стр. ${h.page_index + 1}` : ''
-    return `${h.source_title || 'Источник'}${p}`
+    // Для онтологии h.title = название главы (или «о книге») — показываем его в
+    // заголовке плашки: источник → глава · стр. N. Для контентных хитов title
+    // пуст — плашка деградирует до «источник · стр. N».
+    const chap = h.title ? ` → ${h.title}` : ''
+    const p = h.page_index != null ? ` · стр. ${h.page_index + 1}` : ''
+    return `${h.source_title || 'Источник'}${chap}${p}`
   }
   return h.title || 'Без названия'
 }
@@ -154,11 +175,11 @@ const clearButtons = [
 
 <template>
   <div class="chat">
-    <h1>Ассистент поиска</h1>
+    <h1>{{ props.title }}</h1>
 
     <div v-if="!llmConfigured" class="state">
       Чат появится после подключения ключа модели. Пока пользуйтесь
-      <router-link :to="{ name: 'search' }">обычным поиском</router-link>.
+      <router-link :to="{ name: 'search' }">полнотекстовым поиском</router-link>.
     </div>
 
     <div v-else class="chat-layout">
@@ -198,18 +219,22 @@ const clearButtons = [
       <div class="chat-main">
         <div class="chat-feed" ref="feedEl">
           <p v-if="!messages.length" class="state">
-            Опишите, что ищете — ассистент найдёт источник и страницу.
+            {{ props.emptyHint }}
           </p>
 
           <div v-for="(m, i) in messages" :key="i" :class="['msg', m.role, { error: m.error }]">
             <div class="bubble">
-              <div class="msg-text">{{ m.text }}</div>
+              <div v-if="m.text" class="msg-text">{{ m.text }}</div>
               <div v-if="m.hits && m.hits.length" class="chat-hits">
                 <div v-for="(h, j) in m.hits" :key="j" class="hit">
                   <router-link :to="hitLink(h)">{{ hitTitle(h) }}</router-link>
                   <div v-if="h.snippet" class="snippet" v-html="h.snippet"></div>
                 </div>
               </div>
+              <div
+                v-else-if="m.role === 'assistant' && !m.text"
+                class="msg-text muted"
+              >Ничего не найдено — попробуйте переформулировать.</div>
             </div>
           </div>
 
@@ -222,7 +247,7 @@ const clearButtons = [
           <input
             v-model="input"
             type="text"
-            placeholder="Например: чем лечить парвовироз у щенка?"
+            :placeholder="props.placeholder"
             :disabled="loading"
           />
           <button type="submit" class="btn" :disabled="loading || !input.trim()">Отправить</button>

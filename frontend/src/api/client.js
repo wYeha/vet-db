@@ -49,11 +49,13 @@ export const api = {
   // diseases
   diseases: (params) => get('/api/diseases', params),
   disease: (id) => get(`/api/diseases/${id}`),
+  // ontology (смысловые оглавления)
+  ontologySearch: (params) => get('/api/ontology/search', params),
   // health
   health: () => get('/api/health'),
   // chat
-  chat: ({ message, history, conversation_id }) =>
-    post('/api/chat', { message, history, conversation_id }),
+  chat: ({ message, history, conversation_id, mode }) =>
+    post('/api/chat', { message, history, conversation_id, mode }),
   // conversations (история чатов)
   conversations: (params) => get('/api/conversations', params),
   conversation: (id) => get(`/api/conversations/${id}`),

@@ -7,7 +7,8 @@ import PharmaView from './views/PharmaView.vue'
 import PreparationView from './views/PreparationView.vue'
 import DiseasesView from './views/DiseasesView.vue'
 import DiseaseView from './views/DiseaseView.vue'
-import ChatView from './views/ChatView.vue'
+import OntologyView from './views/OntologyView.vue'
+import VectorView from './views/VectorView.vue'
 
 const routes = [
   { path: '/', name: 'home', component: HomeView },
@@ -17,7 +18,8 @@ const routes = [
   { path: '/pharma/:id', name: 'preparation', component: PreparationView, props: true },
   { path: '/diseases', name: 'diseases', component: DiseasesView },
   { path: '/diseases/:id', name: 'disease', component: DiseaseView, props: true },
-  { path: '/chat', name: 'chat', component: ChatView },
+  { path: '/ontology', name: 'ontology', component: OntologyView },
+  { path: '/vector', name: 'vector', component: VectorView },
 ]
 
 export const router = createRouter({

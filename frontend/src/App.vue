@@ -28,15 +28,17 @@ function submitSearch() {
         <router-link to="/">Источники</router-link>
         <router-link to="/pharma">Фарма</router-link>
         <router-link to="/diseases">Диагностика</router-link>
+        <router-link to="/search">Полнотекст</router-link>
         <router-link
           v-if="llmConfigured"
-          to="/chat"
-        >Ассистент</router-link>
+          to="/ontology"
+        >Онтология</router-link>
         <span
           v-else
           class="nav-disabled"
-          title="Чат появится после подключения ключа модели"
-        >Ассистент</span>
+          title="Онтология-чат появится после подключения ключа модели"
+        >Онтология</span>
+        <router-link to="/vector">Вектор</router-link>
       </nav>
       <form class="global-search" @submit.prevent="submitSearch">
         <input v-model="q" type="search" placeholder="Глобальный поиск…" />
