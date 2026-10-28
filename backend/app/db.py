@@ -47,40 +47,75 @@ def get_db():
 _TOKEN_RE = re.compile(r"[^\W_]+", re.UNICODE)
 
 
+# Пороги грубой обрезки окончаний (стемминг «на коленке», FTS5 unicode61 без стеммера).
+_MIN_STEM_TOKEN = 3     # токены короче — точное слово, без обрезки и без префикса
+_CUT2_LEN = 7           # длина >= 7 → срезать 2 символа
+_CUT1_LEN = 5           # длина >= 5 → срезать 1 символ (иначе не обрезаем); основа >= 4
+
+
+def _is_exact(t: str) -> bool:
+    """Точный токен (без префикса): чистое число или короче _MIN_STEM_TOKEN."""
+    return t.isdigit() or len(t) < _MIN_STEM_TOKEN
+
+
+def _stem(token: str) -> str:
+    """Грубо обрезает окончание; приводит к нижнему регистру.
+
+    Чистые числа, токены короче 3 символов и токены со смесью цифр и букв
+    («b12», «h5n1») не обрезаются. Известное ограничение: беглые гласные и
+    чередования не ловятся («станок» → «стано*» не найдёт «станка»).
+    """
+    t = token.lower()
+    if _is_exact(t) or any(c.isdigit() for c in t):
+        return t
+    if len(t) >= _CUT2_LEN:
+        return t[:-2]
+    if len(t) >= _CUT1_LEN:
+        return t[:-1]
+    return t
+
+
+def _term(token: str) -> str:
+    """FTS5-терм из токена: `"основа"*` либо точное `"токен"` (числа, <3 символов)."""
+    t = token.lower()
+    stem = _stem(token)
+    if _is_exact(t):
+        return f'"{stem}"'
+    return f'"{stem}"*'
+
+
+def _terms(q: str) -> list:
+    """Уникальные термы (порядок сохраняется) из произвольного ввода."""
+    if not q:
+        return []
+    out: list = []
+    for tok in _TOKEN_RE.findall(q):
+        term = _term(tok)
+        if term not in out:
+            out.append(term)
+    return out
+
+
 def build_match_query(q: str) -> str:
     """Готовит безопасную MATCH-строку для FTS5 из произвольного пользовательского ввода.
 
     Спецсимволы FTS5 (`"`, `*`, `:`, `-`, `(`, `)`, `^`) роняют парсер, поэтому
-    выделяем только словарные токены и оборачиваем каждый в кавычки-фразы.
-    Несколько токенов соединяются неявным AND (пробел). Последний токен получает
-    префиксный `*` — поиск «по мере ввода» / по началу слова.
+    выделяем только словарные токены (`_TOKEN_RE`), каждый превращаем в
+    кавычечную фразу через :func:`_term`. Токены соединяются неявным AND (пробел).
+    Каждый токен получает префиксный `*` после грубой обрезки окончания
+    (числа и токены <3 символов — точные). Одинаковые термы дедуплицируются.
     Возвращает пустую строку, если значимых токенов нет.
     """
-    if not q:
-        return ""
-    tokens = _TOKEN_RE.findall(q)
-    if not tokens:
-        return ""
-    parts = [f'"{t}"' for t in tokens[:-1]]
-    # префиксный поиск по последнему токену
-    parts.append(f'"{tokens[-1]}"*')
-    return " ".join(parts)
+    return " ".join(_terms(q))
 
 
 def build_or_match_query(q: str, max_tokens: int = 6) -> str:
     """MATCH-строка с OR-семантикой — фолбэк, когда неявный AND даёт 0 хитов.
 
-    Токены соединяются явным `OR`, что расширяет выдачу (совпадение по любому
-    слову). Используется чат-поиском при пустом результате точного (AND) поиска;
-    обычный `/api/search` продолжает использовать :func:`build_match_query`.
+    Те же термы (префикс + обрезка), что и в :func:`build_match_query`, но через
+    явный `OR`. Кап `max_tokens` применяется к уникальным термам.
     """
-    if not q:
-        return ""
-    tokens = _TOKEN_RE.findall(q)
-    if not tokens:
-        return ""
-    parts = [f'"{t}"' for t in tokens[:max_tokens]]
-    return " OR ".join(parts)
+    return " OR ".join(_terms(q)[:max_tokens])
 
 
 def like_escape(s: str) -> str:
