@@ -154,3 +154,48 @@ def test_refine_newcastle_never_on_bibliography(pdb):
             (h.source_id, h.page_index),
         ).fetchone()["markdown"]
         assert not _is_bibliography(md), (h.source_id, h.page_index)
+
+
+# --- Пакет А: запасной путь, видовой буст, <br> (привязано к текущему корпусу) ---
+
+def test_source_species_real(db):
+    from app.species import source_species
+    m = source_species(db)
+    if not m:
+        pytest.skip("нет sources")
+    titles = {r[0]: r[1] for r in db.execute("SELECT id, title FROM sources")}
+    for sid, t in titles.items():
+        print(sid, m.get(sid), t)
+    assert sum(1 for v in m.values() if v is None) <= 6
+    assert m[titles_id(titles, "diseases of poultry")] == "avian"
+    assert m[titles_id(titles, "modern pig farming")] == "swine"
+
+
+def titles_id(titles, name):
+    return next(i for i, t in titles.items() if t == name)
+
+
+def test_fulltext_fallback_real(db):
+    from app.ontology import _is_bibliography, fulltext_fallback_hits
+    try:
+        hits = fulltext_fallback_hits(db, "gentamicin")
+    except sqlite3.OperationalError:
+        pytest.skip("нет pages_fts")
+    assert hits and all(h.origin == "fulltext" and h.precise is None for h in hits)
+    for h in hits:
+        md = db.execute("SELECT markdown FROM pages_fts WHERE source_id=? AND page_index=?",
+                        (h.source_id, h.page_index)).fetchone()[0]
+        assert not _is_bibliography(md)
+        assert "&lt;br" not in (h.snippet or "")
+
+
+def test_species_boost_real(db):
+    from app.ontology import refine_ontology_hits
+    from app.species import detect_query_species, rerank_by_species, source_species
+    kw = "тилозин tylosin"
+    base = refine_ontology_hits(db, search_ontology(db, kw, limit=8), kw)
+    sp = source_species(db)
+    out = rerank_by_species(base, detect_query_species("дозировка тилозина свиньям"), sp)
+    assert len(out) == len(base)
+    if any(sp.get(h.source_id) == "swine" for h in base):
+        assert sp.get(out[0].source_id) == "swine"

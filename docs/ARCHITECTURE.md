@@ -89,10 +89,14 @@ S3 (источник правды, ~15 ГБ) ──ingest──▶ data/index.db
   таймаут/ретраи (4xx не ретраит), `LLMNotConfigured`/`LLMError`; Authorization не логируется.
 - `schemas.py` — Pydantic-модели ответов.
 - `snippets.py` — `safe_snippet`, `SNIPPET_ARGS` (+ алиасы `_safe_snippet`, `_SNIP`), `_MARK_OPEN/_MARK_CLOSE` (экранирование HTML +
-  доверенный `<mark>`); общий для `routers/search.py` (реэкспорт под теми же именами) и ядра.
+  доверенный `<mark>`), `clean_br` (теги `<br>`/`<br/>`/`<br />` → пробел ДО экранирования, срез обрезков
+  `br>`/`<br` на краях FTS-фрагмента; прочий HTML по-прежнему экранируется; применяется и в
+  `ontology._row`, поэтому текст сниппета `/api/ontology/search` изменился только в части `<br>` → пробел); общий для `routers/search.py` (реэкспорт под теми же именами) и ядра.
 - `ontology.py` — ядро онтологии (без импорта роутеров): `search_ontology` (FTS по
-  `ontology_fts`) и этап 2 чата `refine_ontology_hits` (`_chapter_ranges`, `_best_page`, `_is_bibliography`,
-  `_shift_fallback_start`), общий фолбэк-маппер `fallback_hit`.
+  `ontology_fts`) и этап 2 чата `refine_ontology_hits` (`_chapter_ranges`, `_page_candidates`, `_best_page`, `_is_bibliography`,
+  `_shift_fallback_start`), общий фолбэк-маппер `fallback_hit`, запасной путь `fulltext_fallback_hits`.
+- `species.py` — видовой буст (без LLM, без записи в БД): `detect_query_species`, `source_species`,
+  `rerank_by_species`, `species_key`.
 - Роутеры (`routers/`):
   - `sources.py` — `GET /api/sources` (фильтр q), `/{id}`, `/{id}/toc?origin=all|curated|markdown`,
     `/{id}/pages/{index}`, `/{id}/pdf` (302 на presigned S3).
@@ -102,7 +106,8 @@ S3 (источник правды, ~15 ГБ) ──ingest──▶ data/index.db
   - `diseases.py` — `GET /api/diseases?species=`, `/{id}`.
   - `chat.py` — `POST /api/chat` (см. «Поиск: чат»); бюджет-гард, 503/429/502; запись в history.
   - `conversations.py` — `GET /api/conversations`, `/{id}`, `POST /api/conversations/clear`.
-- Тесты: `backend/tests/test_chat.py`, `test_history.py`, `test_ontology_refine.py`
+- Тесты: `backend/tests/test_chat.py`, `test_history.py`, `test_ontology_refine.py`,
+  `test_snippets.py`, `test_species.py`, `test_fulltext_fallback.py`
   (этап 2 на in-memory SQLite), `test_search_real_index.py` (на реальном index.db, skip без него).
 
 ---
@@ -183,6 +188,17 @@ qwen3 есть в дампах, но пока не подключены (буд�
   онтологии. `/api/ontology/search` (внешний скилл) этап 2 не использует, его контракт
   и SQL не менялись. Известное ограничение: детектор литературы эвристический
   (по формату строк) — нестандартно оформленные списки могут не распознаться.
+  **Запасной путь (пакет А).** Только если после refine список хитов ПУСТ (нет строк онтологии /
+  нет `ontology_fts`): `fulltext_fallback_hits` — AND по `pages_fts`, при <3 хитов добор OR
+  (AND выше, дедуп по (source_id, page_index)), по 40 кандидатов на ступень; страницы литературы
+  исключаются (только литература → пусто); кап 8. Хиты `origin="fulltext"`, `precise=null`,
+  без `title`; фронт дописывает « · вне онтологии». «Все precise=false» запасной путь НЕ включает.
+  **Видовой буст.** Вид берётся из исходного сообщения (swine/avian, регэкспы с ``; «свинец»,
+  «курс» не срабатывают); вид источника считается на лету из `sources.title+description`
+  (top>=2 и top>=2×второй, иначе нейтрален; в БД не пишется). Три яруса, стабильная
+  пересортировка: 0 — вид источника совпал, 1 — нейтральный/неизвестный, 2 — иной; хиты не
+  отбрасываются. Ограничения: уровень книги (не главы), только swine/avian (КРС в данных нет),
+  это буст, а не фильтр. Для запасного пути ярусы применяются до капа 8.
 - **`mode=vector`** (экран «Вектор») — заглушка: **501** ДО бюджет-гарда и любого
   вызова LLM (бюджет не тратим; фронт этот экран бэк не зовёт).
 - **`mode` не задан (`None`)** — старый путь над контентным FTS (ниже). Достижим
@@ -216,7 +232,8 @@ page_index`, для preparation/disease — `ref_id/title`; общее — `snip
 Аддитивное поле `precise` (только чат `mode=ontology`): `true` — страница найдена FTS в
 теле книги внутри главы, сниппет из тела; `false` — фолбэк (старт главы или уровень
 книги, сниппет из аннотации); `null` — все прочие хиты (поиск, старый чат, история до
-изменения). Для онтологии `title` — название главы (или «о книге»). Фронт
+изменения). Аддитивное `origin`: `"ontology"` — хит онтологии (этап 1/2), `"fulltext"` — запасной
+полнотекстовый путь; `null` — прочее/старая история. Для онтологии `title` — название главы (или «о книге»). Фронт
 строит из этого ссылки: page→читалка `/source/{id}?page=`, preparation→`/pharma/{id}`,
 disease→`/diseases/{id}`.
 

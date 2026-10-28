@@ -15,17 +15,19 @@
   главы → плашка ведёт на лучшую по BM25 страницу со сниппетом из тела книги
   (`precise=True`); если в диапазоне пусто — фолбэк на старт главы и сниппет
   аннотации (`precise=False`). Новых LLM-вызовов нет;
+- запасной путь чата при ПУСТОМ результате онтологии — `fulltext_fallback_hits`
+  (полнотекст по pages_fts, `origin="fulltext"`, без литературы);
 - inline-чат (`mode=None`) — `search_ontology` как ориентир для модели.
 """
 import html
 import re
 import logging
 import time
-from typing import Any, Dict, Iterable, List, Optional, Tuple
+from typing import Any, Callable, Dict, Iterable, List, Optional, Tuple
 
 from .db import build_match_query, build_or_match_query
 from .schemas import SearchHit
-from .snippets import SNIPPET_ARGS, safe_snippet
+from .snippets import SNIPPET_ARGS, clean_br, safe_snippet
 
 log = logging.getLogger("vetai.ontology")
 
@@ -40,7 +42,7 @@ _MIN_STRONG_HITS = 3
 
 
 def _row(r) -> dict:
-    snip = html.escape(r["snip"] or "").replace(chr(2), "<mark>").replace(chr(3), "</mark>")
+    snip = html.escape(clean_br(r["snip"] or "")).replace(chr(2), "<mark>").replace(chr(3), "</mark>")
     return {
         "source_id": r["source_id"],
         "source_slug": r["source_slug"],
@@ -170,6 +172,31 @@ def _is_bibliography(md: Optional[str]) -> bool:
 _CANDIDATES = 60
 
 
+def _page_candidates(db, match: str, source_id: Optional[int] = None,
+                     lo: Optional[int] = None, hi: Optional[int] = None,
+                     limit: int = _CANDIDATES):
+    """Кандидаты-страницы из pages_fts по BM25: строки (page_index, source_id,
+    source_title, markdown, snip). `source_id`/`[lo, hi)` — опциональные фильтры."""
+    sql = (
+        "SELECT page_index, source_id, source_title, markdown, "
+        f"snippet(pages_fts, 0, {SNIPPET_ARGS}) AS snip, rank "
+        "FROM pages_fts WHERE pages_fts MATCH ?"
+    )
+    args: list = [match]
+    if source_id is not None:
+        sql += " AND source_id = ?"
+        args.append(source_id)
+    if lo is not None:
+        sql += " AND page_index >= ?"
+        args.append(lo)
+    if hi is not None:
+        sql += " AND page_index < ?"
+        args.append(hi)
+    sql += " ORDER BY rank LIMIT ?"
+    args.append(limit)
+    return db.execute(sql, args)
+
+
 def _best_page(db, match: str, source_id: int, lo: Optional[int], hi: Optional[int],
                stats: Optional[Dict[str, int]] = None):
     """Лучшая по BM25 НЕ-библиографическая страница источника в [lo, hi)
@@ -179,26 +206,63 @@ def _best_page(db, match: str, source_id: int, lo: Optional[int], hi: Optional[i
     не-библиографии. Если все кандидаты — литература, ступень пуста (None).
     `stats["bib_skipped"]` — счётчик отброшенных страниц (для лога).
     """
-    sql = (
-        f"SELECT page_index, markdown, snippet(pages_fts, 0, {SNIPPET_ARGS}) AS snip "
-        "FROM pages_fts WHERE pages_fts MATCH ? AND source_id = ?"
-    )
-    args: list = [match, source_id]
-    if lo is not None:
-        sql += " AND page_index >= ?"
-        args.append(lo)
-    if hi is not None:
-        sql += " AND page_index < ?"
-        args.append(hi)
-    sql += " ORDER BY rank LIMIT ?"
-    args.append(_CANDIDATES)
-    for r in db.execute(sql, args):
+    for r in _page_candidates(db, match, source_id, lo, hi):
         if _is_bibliography(r["markdown"]):
             if stats is not None:
                 stats["bib_skipped"] = stats.get("bib_skipped", 0) + 1
             continue
         return r["page_index"], r["snip"]
     return None
+
+
+# --- Запасной путь: полнотекст по корпусу при промахе онтологии ---------------
+
+_FALLBACK_CANDIDATES = 40
+_FALLBACK_LIMIT = 8
+
+
+def fulltext_fallback_hits(db, keywords: str, limit: int = _FALLBACK_LIMIT,
+                           species_key: Optional[Callable[[SearchHit], int]] = None
+                           ) -> List[SearchHit]:
+    """Запасной путь: страницы из pages_fts по keywords (без привязки к онтологии).
+
+    Ступени: AND; если не-библиографических хитов < _MIN_STRONG_HITS — добор OR
+    (AND выше OR, дедуп по (source_id, page_index)). Кандидатов по 40 на ступень;
+    страницы списка литературы исключаются (если осталась только литература — []).
+    `species_key` — опциональный ключ яруса (меньше = выше), стабильная пересортировка
+    ДО капа `limit` (ядро не зависит от species.py). Хиты: type="page", title=None,
+    precise=None, origin="fulltext". Пустые keywords → [] без SQL.
+    Может бросить sqlite3.OperationalError (нет pages_fts) — ловит вызывающий.
+    """
+    queries = [build_match_query(keywords or "")]
+    or_q = build_or_match_query(keywords or "")
+    if not queries[0] and not or_q:
+        return []
+    hits: List[SearchHit] = []
+    seen = set()
+
+    def _collect(match: str) -> None:
+        if not match:
+            return
+        for r in _page_candidates(db, match, limit=_FALLBACK_CANDIDATES):
+            if _is_bibliography(r["markdown"]):
+                continue
+            k = (r["source_id"], r["page_index"])
+            if k in seen:
+                continue
+            seen.add(k)
+            hits.append(SearchHit(
+                type="page", source_id=r["source_id"], source_title=r["source_title"],
+                page_index=r["page_index"], title=None, snippet=safe_snippet(r["snip"]),
+                score=r["rank"], precise=None, origin="fulltext",
+            ))
+
+    _collect(queries[0])
+    if len(hits) < _MIN_STRONG_HITS and or_q != queries[0]:
+        _collect(or_q)
+    if species_key is not None:
+        hits = sorted(hits, key=species_key)
+    return hits[:limit]
 
 
 def _shift_fallback_start(db, source_id: int, page: int) -> int:

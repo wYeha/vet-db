@@ -478,6 +478,8 @@ def test_ontology_mode_survives_missing_ontology_fts(monkeypatch):
 
     monkeypatch.setattr(chat_mod.llm, "chat_completion", fake)
     monkeypatch.setattr(chat_mod, "search_ontology", raise_op)
+    # запасной путь не должен ходить в реальную БД
+    monkeypatch.setattr(chat_mod, "fulltext_fallback_hits", lambda *a, **k: [])
 
     r = client.post("/api/chat", json={"message": "что-нибудь", "mode": "ontology"})
     assert r.status_code == 200
@@ -486,6 +488,128 @@ def test_ontology_mode_survives_missing_ontology_fts(monkeypatch):
     assert calls["n"] == 1
     assert body["hits"] == []
     assert body["answer"] == ""
+
+
+# --- Пакет А: запасной путь и видовой буст ---------------------------------
+
+def _ft_hit(sid, page, title="К"):
+    return SearchHit(type="page", source_id=sid, source_title=title, page_index=page,
+                     snippet="<mark>x</mark>", score=-1.0, origin="fulltext")
+
+
+def _setup_ont(monkeypatch, rows, refined=None, fulltext=None, species=None):
+    calls = {"llm": 0, "ft": 0}
+
+    def fake(messages, tools=None, tool_choice=None):
+        calls["llm"] += 1
+        return _final_msg("тилозин tylosin")
+
+    monkeypatch.setattr(chat_mod.llm, "chat_completion", fake)
+    monkeypatch.setattr(chat_mod, "search_ontology", lambda db, q, limit=20: list(rows))
+    if refined is not None:
+        monkeypatch.setattr(chat_mod, "refine_ontology_hits", lambda db, r, k: list(refined))
+
+    def ft(db, kw, limit=8, species_key=None):
+        calls["ft"] += 1
+        hs = list(fulltext or [])
+        if species_key is not None:
+            hs = sorted(hs, key=species_key)
+        return hs[:limit]
+
+    monkeypatch.setattr(chat_mod, "fulltext_fallback_hits", ft)
+    monkeypatch.setattr(chat_mod, "source_species", lambda db: dict(species or {}))
+    return calls
+
+
+def _precise(sid, page):
+    return SearchHit(type="page", source_id=sid, source_title="К", page_index=page,
+                     snippet="s", score=-1.0, precise=True)
+
+
+def test_ontology_empty_uses_fulltext_fallback(monkeypatch):
+    calls = _setup_ont(monkeypatch, [], fulltext=[_ft_hit(1, 5), _ft_hit(2, 7)])
+    r = client.post("/api/chat", json={"message": "что-то", "mode": "ontology"})
+    hits = r.json()["hits"]
+    assert [h["origin"] for h in hits] == ["fulltext", "fulltext"]
+    assert hits[0]["precise"] is None
+    assert calls["ft"] == 1 and calls["llm"] == 1
+
+
+def test_ontology_found_no_fulltext(monkeypatch):
+    calls = _setup_ont(monkeypatch, _ONT_ROWS, refined=[_precise(3, 15)],
+                       fulltext=[_ft_hit(1, 1)])
+    r = client.post("/api/chat", json={"message": "x", "mode": "ontology"})
+    hits = r.json()["hits"]
+    assert [h["origin"] for h in hits] == ["ontology"]
+    assert calls["ft"] == 0 and calls["llm"] == 1
+
+
+def test_ontology_all_imprecise_no_fulltext(monkeypatch):
+    # реальный refine с фолбэком (precise=False) -> запасной путь не вызывается
+    from app import ontology as ontology_mod
+    monkeypatch.setattr(ontology_mod, "_best_page", lambda *a, **k: None)
+    monkeypatch.setattr(ontology_mod, "_shift_fallback_start", lambda db, sid, page: page)
+    calls = _setup_ont(monkeypatch, _ONT_ROWS, fulltext=[_ft_hit(1, 1)])
+    r = client.post("/api/chat", json={"message": "x", "mode": "ontology"})
+    hits = r.json()["hits"]
+    assert hits and all(h["precise"] is False and h["origin"] == "ontology" for h in hits)
+    assert calls["ft"] == 0
+
+
+def test_ontology_fts_missing_still_fulltext(monkeypatch):
+    import sqlite3 as _sq
+    calls = _setup_ont(monkeypatch, [], fulltext=[_ft_hit(1, 2)])
+
+    def raise_op(db, q, limit=20):
+        raise _sq.OperationalError("no such table: ontology_fts")
+
+    monkeypatch.setattr(chat_mod, "search_ontology", raise_op)
+    r = client.post("/api/chat", json={"message": "x", "mode": "ontology"})
+    assert [h["origin"] for h in r.json()["hits"]] == ["fulltext"]
+    assert calls["ft"] == 1
+
+
+def test_ontology_fulltext_operational_error_is_empty(monkeypatch):
+    import sqlite3 as _sq
+    _setup_ont(monkeypatch, [])
+
+    def raise_op(*a, **k):
+        raise _sq.OperationalError("no such table: pages_fts")
+
+    monkeypatch.setattr(chat_mod, "fulltext_fallback_hits", raise_op)
+    r = client.post("/api/chat", json={"message": "x", "mode": "ontology"})
+    assert r.status_code == 200 and r.json()["hits"] == []
+
+
+_SPECIES = {1: "avian", 2: "swine", 3: None, 4: "swine"}
+_REFINED = [_precise(1, 1), _precise(2, 2), _precise(3, 3), _precise(4, 4)]
+
+
+def test_species_boost_swine_reorders_without_loss(monkeypatch):
+    _setup_ont(monkeypatch, _ONT_ROWS, refined=_REFINED, species=_SPECIES)
+    r = client.post("/api/chat", json={"message": "дозировка тилозина свиньям", "mode": "ontology"})
+    ids = [h["source_id"] for h in r.json()["hits"]]
+    assert ids == [2, 4, 3, 1]
+
+
+def test_species_boost_avian(monkeypatch):
+    _setup_ont(monkeypatch, _ONT_ROWS, refined=_REFINED, species=_SPECIES)
+    r = client.post("/api/chat", json={"message": "дозировка тилозина бройлерам", "mode": "ontology"})
+    assert [h["source_id"] for h in r.json()["hits"]] == [1, 3, 2, 4]
+
+
+def test_species_no_species_keeps_order(monkeypatch):
+    _setup_ont(monkeypatch, _ONT_ROWS, refined=_REFINED, species=_SPECIES)
+    r = client.post("/api/chat", json={"message": "дозировка тилозина", "mode": "ontology"})
+    assert [h["source_id"] for h in r.json()["hits"]] == [1, 2, 3, 4]
+
+
+def test_species_applies_to_fulltext_before_cap(monkeypatch):
+    ft = [_ft_hit(1, i) for i in range(10)] + [_ft_hit(2, 99)]
+    _setup_ont(monkeypatch, [], fulltext=ft, species=_SPECIES)
+    r = client.post("/api/chat", json={"message": "тилозин свиньям", "mode": "ontology"})
+    hits = r.json()["hits"]
+    assert len(hits) == 8 and hits[0]["source_id"] == 2
 
 
 def test_health_reports_llm_configured(monkeypatch):

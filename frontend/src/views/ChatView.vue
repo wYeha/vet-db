@@ -151,7 +151,9 @@ function hitTitle(h) {
     const chap = h.title ? ` → ${h.title}` : ''
     const p = h.page_index != null ? ` · стр. ${h.page_index + 1}` : ''
     const start = h.precise === false && h.page_index != null ? ' (начало главы)' : ''
-    return `${h.source_title || 'Источник'}${chap}${p}${start}`
+    // origin === 'fulltext' — запасной полнотекстовый путь (темы нет в онтологии)
+    const ft = h.origin === 'fulltext' ? ' · вне онтологии' : ''
+    return `${h.source_title || 'Источник'}${chap}${p}${start}${ft}`
   }
   return h.title || 'Без названия'
 }

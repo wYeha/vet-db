@@ -7,7 +7,8 @@
   тела, `precise=True`; иначе фолбэк на старт главы + аннотацию, `precise=False`).
   Новых LLM-вызовов этап 2 не добавляет. Модель НЕ пишет выводов по прочитанному —
   только превращает фразу в ключевые слова; ответ пустой, наверх уходят сами хиты
-  `SearchHit(type="page")` для плашек-ссылок в читалку. Обычный вызов `/api/chat`
+  `SearchHit(type="page")` для плашек-ссылок в читалку. При пустой онтологии —
+  запасной полнотекстовый путь (`origin="fulltext"`). Обычный вызов `/api/chat`
   без `mode` идёт именно сюда.
 - `mode="vector"` — заглушка: сразу **501** ДО бюджет-гарда и любого вызова LLM
   (векторный поиск не реализован, бюджет не тратим).
@@ -37,7 +38,8 @@ from fastapi import APIRouter, HTTPException
 
 from .. import config, history, llm
 from ..db import build_match_query, build_or_match_query, connection
-from ..ontology import fallback_hit, refine_ontology_hits, search_ontology
+from ..ontology import fallback_hit, fulltext_fallback_hits, refine_ontology_hits, search_ontology
+from ..species import detect_query_species, rerank_by_species, source_species, species_key
 from ..schemas import ChatRequest, ChatResponse, ChatUsage, SearchHit
 from .search import _search_books, _search_diseases, _search_pharma
 
@@ -250,7 +252,12 @@ def _run_ontology(db, message, history_msgs, usage, collected) -> str:
     `refine_ontology_hits`: FTS по `pages_fts` внутри диапазона главы → плашка на
     лучшую страницу со сниппетом из тела (`precise=True`); в диапазоне пусто —
     фолбэк на старт главы и аннотацию (`precise=False`). Старый index.db
-    (OperationalError) → прежний маппинг строк онтологии. Текстовый ответ пустой.
+    (OperationalError) → прежний маппинг строк онтологии. Хиты онтологии помечаются
+    `origin="ontology"`. Если онтология дала 0 хитов — запасной путь
+    `fulltext_fallback_hits` (полнотекст по книгам, `origin="fulltext"`, без
+    литературы, до 8). Вид из исходного сообщения (swine/avian) мягко поднимает
+    источники этого вида (`species.py`, три яруса, ничего не отбрасывается).
+    Текстовый ответ пустой.
     """
     # Шаг 1 — ключевые слова (тот же дешёвый LLM-шаг, что и в inline-режиме).
     # history_msgs не используем: экран отдаёт хиты, а не ведёт диалог.
@@ -265,6 +272,26 @@ def _run_ontology(db, message, history_msgs, usage, collected) -> str:
     except sqlite3.OperationalError as exc:
         log.warning("ontology refine skipped (old index.db / no pages_fts?): %s", exc)
         hits = [_ontology_row_to_hit(o) for o in rows]
+    for h in hits:
+        h.origin = "ontology"
+
+    # Вид животного — из ИСХОДНОГО сообщения (keywords виды не содержат); мягкий буст
+    q_species = detect_query_species(message)
+    src_species = source_species(db) if q_species else {}
+
+    # Шаг 4 — запасной путь: ТОЛЬКО если онтология ничего не дала (пустой список).
+    # «Все precise=False» — валидные совпадения по аннотациям, их не дополняем.
+    if not hits:
+        try:
+            hits = fulltext_fallback_hits(
+                db, keywords, limit=_ONTOLOGY_QUERY_LIMIT,
+                species_key=species_key(q_species, src_species),
+            )
+        except sqlite3.OperationalError as exc:
+            log.warning("fulltext fallback skipped (no pages_fts?): %s", exc)
+            hits = []
+    else:
+        hits = rerank_by_species(hits, q_species, src_species)
     _add_hits(collected, hits)
     usage.tool_calls += 1
 

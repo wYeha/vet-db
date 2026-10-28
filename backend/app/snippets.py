@@ -3,6 +3,7 @@
 Вынесено из routers/search.py, чтобы ядро (ontology.py) не импортировало роутер.
 """
 import html
+import re
 from typing import Optional
 
 # Сниппет строится из СЫРОГО OCR-контента, где встречаются настоящие HTML-теги
@@ -17,12 +18,33 @@ _MARK_CLOSE = ""
 SNIPPET_ARGS = f"'{_MARK_OPEN}', '{_MARK_CLOSE}', '…', 20"
 
 
+_BR = re.compile(r"<\s*br\s*/?\s*>", re.I)
+# FTS snippet() режет по токенам: фрагмент может начаться с остатка «br>» / «/br>»
+# (после необязательного многоточия) или кончиться на «<br» — срезаем обрезки тега.
+_BR_HEAD = re.compile(r"^(\s*…?\s*)/?\s*br\s*/?>\s*", re.I)
+_BR_TAIL = re.compile(r"\s*<\s*/?\s*br\s*/?\s*$", re.I)
+_SPACES = re.compile(r" {2,}")
+
+
+def clean_br(s: str) -> str:
+    """Убрать `<br>`-теги (<br>, <br/>, <br />, любой регистр) → пробел.
+
+    Вызывать ДО html.escape: иначе тег превратится в видимый «&lt;br&gt;». Прочий
+    HTML не трогается (его экранирует escape). Схлопывает повторные пробелы;
+    маркеры подсветки (любые плейсхолдеры) не затрагиваются.
+    """
+    s = _BR.sub(" ", s)
+    s = _BR_HEAD.sub(lambda m: m.group(1), s)
+    s = _BR_TAIL.sub("", s)
+    return _SPACES.sub(" ", s)
+
+
 def safe_snippet(snip: Optional[str]) -> Optional[str]:
     """Сырой FTS-сниппет с плейсхолдерами → HTML-экранированный, только доверенный <mark>."""
     if snip is None:
         return None
     return (
-        html.escape(snip)
+        html.escape(clean_br(snip))
         .replace(_MARK_OPEN, "<mark>")
         .replace(_MARK_CLOSE, "</mark>")
     )
