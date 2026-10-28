@@ -83,8 +83,10 @@ def search_ontology(db, q: str, limit: int = 20) -> List[dict]:
 
 # --- Этап 2: от начала главы к конкретной странице-фрагменту -----------------
 
-# Запас диапазона с обеих сторон: конвенция стр. в аннотациях смешанная (0/1-based),
-# отсюда систематическая ошибка старта ±1 стр.
+# Запас диапазона с обеих сторон (страховка): нумерация в аннотациях единая (1-based,
+# B включительно), но границы глав неточны — главы без якоря выравнивались вручную
+# (±1–2 стр.), глава может начинаться в середине страницы (текст на стр. start-1),
+# OCR-заголовок может перетекать на соседнюю страницу. Цена — 1 лишняя стр. с каждой стороны.
 _RANGE_MARGIN = 1
 
 
@@ -94,8 +96,8 @@ def _chapter_ranges(db, source_ids: Iterable[int]) -> Dict[int, Dict[str, Any]]:
     → {source_id: {"chapters": [(start, end_excl|None, title)] (по start),
                    "num_pages": n|None}}
 
-    end_excl: `page_end` (колонка есть и не NULL; хранится B = exclusive-конец в
-    конвенции старта A-1), иначе минимальный старт другой главы строго больше
+    end_excl: `page_end` (колонка есть и не NULL; хранится B = последняя стр. 1-based
+    включительно = exclusive 0-based конец), иначе минимальный старт другой главы строго больше
     текущего, иначе `sources.num_pages`, иначе None (верхней границы нет).
     Если end_excl <= start → start + 1. Главы без старта в диапазоны не входят.
     """
@@ -266,8 +268,9 @@ def fulltext_fallback_hits(db, keywords: str, limit: int = _FALLBACK_LIMIT,
 
 
 def _shift_fallback_start(db, source_id: int, page: int) -> int:
-    """Старт главы из аннотации может (из-за ±1) указывать на литературу ПРЕДЫДУЩЕЙ
-    главы: если стр. `page` — библиография, а `page+1` нет → `page+1`.
+    """Старт главы из аннотации может указывать на литературу ПРЕДЫДУЩЕЙ главы (глава
+    начинается внизу страницы со списком литературы или граница выровнена вручную
+    неточно): если стр. `page` — библиография, а `page+1` нет → `page+1`.
     Один точечный запрос, вызывается только для фолбэк-хитов."""
     pages = {
         r["page_index"]: r["markdown"]
@@ -417,7 +420,7 @@ def refine_ontology_hits(db, rows: List[Dict[str, Any]], keywords: str) -> List[
         if hit is None:
             hit = fallback_hit(row)
             fallbacks += 1
-            # старт главы мог попасть на литературу предыдущей главы (±1) → +1
+            # если старт пришёлся на литературу предыдущей главы → +1
             if queries and hit.source_id is not None and hit.page_index is not None:
                 skey = (hit.source_id, hit.page_index)
                 if skey not in shift_cache:
