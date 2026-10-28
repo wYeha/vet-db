@@ -145,9 +145,13 @@ function hitTitle(h) {
     // Для онтологии h.title = название главы (или «о книге») — показываем его в
     // заголовке плашки: источник → глава · стр. N. Для контентных хитов title
     // пуст — плашка деградирует до «источник · стр. N».
+    // Онтология, этап 2: precise === false — фрагмент в теле не найден, плашка
+    // ведёт на старт главы (помечаем «(начало главы)»); precise === true —
+    // страница-фрагмент внутри главы; undefined/null — прочие хиты, без пометки.
     const chap = h.title ? ` → ${h.title}` : ''
     const p = h.page_index != null ? ` · стр. ${h.page_index + 1}` : ''
-    return `${h.source_title || 'Источник'}${chap}${p}`
+    const start = h.precise === false && h.page_index != null ? ' (начало главы)' : ''
+    return `${h.source_title || 'Источник'}${chap}${p}${start}`
   }
   return h.title || 'Без названия'
 }

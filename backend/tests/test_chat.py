@@ -372,6 +372,10 @@ def test_ontology_mode_uses_search_ontology_not_fts(monkeypatch):
     monkeypatch.setattr(chat_mod.llm, "chat_completion", fake)
     monkeypatch.setattr(chat_mod, "_run_search", boom_search)
     monkeypatch.setattr(chat_mod, "search_ontology", fake_ontology)
+    # этап 2 не должен зависеть от реальной БД: в теле ничего не находится → фолбэк
+    from app import ontology as ontology_mod
+    monkeypatch.setattr(ontology_mod, "_best_page", lambda *a, **k: None)
+    monkeypatch.setattr(ontology_mod, "_shift_fallback_start", lambda db, sid, page: page)
 
     r = client.post("/api/chat", json={"message": "стрептококкоз у свиней", "mode": "ontology"})
     assert r.status_code == 200
@@ -386,9 +390,75 @@ def test_ontology_mode_uses_search_ontology_not_fts(monkeypatch):
     assert hits[0]["source_id"] == 3
     assert hits[0]["page_index"] == 12
     assert hits[0]["title"] == "Стрептококкозы"
+    assert hits[0]["precise"] is False
     # уровень книги: page_index=None, пометка «о книге»
     assert hits[1]["page_index"] is None
     assert hits[1]["title"] == "о книге"
+    assert hits[1]["precise"] is False
+
+
+_ONT_ROWS = [
+    {
+        "source_id": 3, "source_slug": "book3", "source_title": "К1",
+        "chapter_title": "Стрептококкозы", "page_index": 12, "kind": "chapter",
+        "snippet": "<mark>аннотация</mark>", "score": -1.0,
+    },
+]
+
+
+def test_ontology_mode_refine_operational_error_falls_back(monkeypatch):
+    # старый index.db (нет pages_fts / page_end) → refine бросает OperationalError →
+    # 200 и прежний маппинг строк онтологии
+    import sqlite3 as _sqlite3
+
+    monkeypatch.setattr(chat_mod.llm, "chat_completion",
+                        lambda messages, tools=None, tool_choice=None: _final_msg("стрептококкоз"))
+    monkeypatch.setattr(chat_mod, "search_ontology", lambda db, q, limit=20: list(_ONT_ROWS))
+
+    def raise_op(db, rows, keywords):
+        raise _sqlite3.OperationalError("no such table: pages_fts")
+
+    monkeypatch.setattr(chat_mod, "refine_ontology_hits", raise_op)
+
+    r = client.post("/api/chat", json={"message": "стрептококкоз", "mode": "ontology"})
+    assert r.status_code == 200
+    hits = r.json()["hits"]
+    assert len(hits) == 1
+    assert hits[0]["page_index"] == 12
+    assert hits[0]["snippet"] == "<mark>аннотация</mark>"
+    assert hits[0]["precise"] is False
+
+
+def test_ontology_mode_refine_precise_hit(monkeypatch):
+    calls = {"n": 0}
+
+    def fake(messages, tools=None, tool_choice=None):
+        calls["n"] += 1
+        return _final_msg("стрептококкоз Streptococcus suis")
+
+    seen = {}
+
+    def fake_refine(db, rows, keywords):
+        seen["keywords"] = keywords
+        seen["rows"] = rows
+        return [SearchHit(type="page", source_id=3, source_title="К1", page_index=15,
+                          title="Стрептококкозы", snippet="…<mark>suis</mark>…",
+                          score=-1.0, precise=True)]
+
+    monkeypatch.setattr(chat_mod.llm, "chat_completion", fake)
+    monkeypatch.setattr(chat_mod, "search_ontology", lambda db, q, limit=20: list(_ONT_ROWS))
+    monkeypatch.setattr(chat_mod, "refine_ontology_hits", fake_refine)
+
+    r = client.post("/api/chat", json={"message": "стрептококкоз у свиней", "mode": "ontology"})
+    assert r.status_code == 200
+    body = r.json()
+    assert calls["n"] == 1
+    assert body["answer"] == ""
+    assert seen["keywords"] == "стрептококкоз Streptococcus suis"
+    assert seen["rows"] == _ONT_ROWS
+    assert len(body["hits"]) == 1
+    assert body["hits"][0]["page_index"] == 15
+    assert body["hits"][0]["precise"] is True
 
 
 def test_ontology_mode_survives_missing_ontology_fts(monkeypatch):

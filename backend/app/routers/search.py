@@ -4,7 +4,6 @@
 имена колонок: pages_fts(markdown, source_id, source_title, page_index),
 preparations_fts(..., prep_id), diseases_fts(name, body, disease_id).
 """
-import html
 import sqlite3
 from typing import List, Optional
 
@@ -12,29 +11,10 @@ from fastapi import APIRouter, Depends, HTTPException, Query
 
 from ..db import build_match_query, get_db
 from ..schemas import SearchHit
+# хелперы безопасного сниппета живут в ядре (snippets.py); реэкспорт под прежними именами
+from ..snippets import _MARK_CLOSE, _MARK_OPEN, _SNIP, _safe_snippet  # noqa: F401
 
 router = APIRouter(prefix="/api/search", tags=["search"])
-
-# Сниппет строится из СЫРОГО OCR-контента, где встречаются настоящие HTML-теги
-# (<br>, <img> и т.п.). Чтобы v-html на клиенте их не выполнил, оборачиваем
-# совпадения не в готовые <mark>, а в plaintext-плейсхолдеры из private-use зоны
-# (в тексте не встречаются), затем HTML-экранируем весь фрагмент и только потом
-# заменяем плейсхолдеры на настоящие <mark>/</mark>. Итог: единственный HTML в
-# сниппете — доверенные <mark>, всё остальное экранировано.
-_MARK_OPEN = ""
-_MARK_CLOSE = ""
-# параметры snippet(): столбец, старт-тег, конец-тег, многоточие, макс. токенов
-_SNIP = f"'{_MARK_OPEN}', '{_MARK_CLOSE}', '…', 20"
-
-
-def _safe_snippet(snip: Optional[str]) -> Optional[str]:
-    if snip is None:
-        return None
-    return (
-        html.escape(snip)
-        .replace(_MARK_OPEN, "<mark>")
-        .replace(_MARK_CLOSE, "</mark>")
-    )
 
 
 def _search_books(db, match, source_id, limit):

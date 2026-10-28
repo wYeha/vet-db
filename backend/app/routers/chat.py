@@ -1,11 +1,14 @@
 """Чат «найти источник»: LLM помогает найти книгу/главу/страницу (SPEC фаза 2, M3).
 
 Эндпоинт `/api/chat` работает в режимах (поле `mode` в теле запроса):
-- `mode="ontology"` (ДЕФОЛТ) — ретрив ТОЛЬКО по карте онтологии (`search_ontology`,
-  без контентного FTS): `_extract_keywords` → `search_ontology`. Модель НЕ пишет
-  выводов по прочитанному — только превращает фразу в ключевые слова; ответ пустой,
-  наверх уходят сами хиты. Строки онтологии маппятся в `SearchHit(type="page")` для
-  плашек-ссылок в читалку. Обычный вызов `/api/chat` без `mode` идёт именно сюда.
+- `mode="ontology"` (ДЕФОЛТ) — ретрив по карте онтологии: `_extract_keywords` →
+  `search_ontology` (книга/глава + старт) → `refine_ontology_hits` (этап 2: FTS по
+  `pages_fts` внутри диапазона главы, плашка на лучшую страницу со сниппетом из
+  тела, `precise=True`; иначе фолбэк на старт главы + аннотацию, `precise=False`).
+  Новых LLM-вызовов этап 2 не добавляет. Модель НЕ пишет выводов по прочитанному —
+  только превращает фразу в ключевые слова; ответ пустой, наверх уходят сами хиты
+  `SearchHit(type="page")` для плашек-ссылок в читалку. Обычный вызов `/api/chat`
+  без `mode` идёт именно сюда.
 - `mode="vector"` — заглушка: сразу **501** ДО бюджет-гарда и любого вызова LLM
   (векторный поиск не реализован, бюджет не тратим).
 - `mode=None` (без значения) — старый путь поверх контентного FTS: модель формулирует
@@ -34,7 +37,7 @@ from fastapi import APIRouter, HTTPException
 
 from .. import config, history, llm
 from ..db import build_match_query, build_or_match_query, connection
-from ..ontology import search_ontology
+from ..ontology import fallback_hit, refine_ontology_hits, search_ontology
 from ..schemas import ChatRequest, ChatResponse, ChatUsage, SearchHit
 from .search import _search_books, _search_diseases, _search_pharma
 
@@ -228,41 +231,40 @@ def _lookup_ontology(db, keywords: str) -> List[Dict[str, Any]]:
 
 
 def _ontology_row_to_hit(o: Dict[str, Any]) -> SearchHit:
-    """Строка онтологии → SearchHit(type="page"), чтобы фронтовые hitLink/hitTitle
-    и переход в reader работали без изменений.
+    """Фолбэк-маппер: строка онтологии → SearchHit(type="page", precise=False),
+    чтобы фронтовые hitLink/hitTitle и переход в reader работали без изменений.
 
     page_index может быть None (уровень книги) — ссылка на reader корректна и без
     страницы. В title кладём заголовок главы (или пометку «о книге» для kind=book).
+    Реализация общая с ядром (`ontology.fallback_hit`).
     """
-    kind = o.get("kind")
-    chapter = o.get("chapter_title")
-    title = chapter if chapter else ("о книге" if kind == "book" else None)
-    return SearchHit(
-        type="page",
-        source_id=o.get("source_id"),
-        source_title=o.get("source_title"),
-        page_index=o.get("page_index"),
-        title=title,
-        snippet=o.get("snippet"),
-        score=o.get("score"),
-    )
+    return fallback_hit(o)
 
 
 def _run_ontology(db, message, history_msgs, usage, collected) -> str:
-    """Онтология-режим: ретрив ТОЛЬКО по search_ontology (без контентного FTS).
+    """Онтология-режим: ретрив по онтологии + уточнение страницы (без новых LLM).
 
     Модель НЕ пишет выводов по прочитанному — только помогает превратить фразу в
-    ключевые слова (1 дешёвый LLM-шаг `_extract_keywords`). Результат — сами хиты:
-    строки онтологии маппятся в SearchHit(type="page") и кладутся в collected, фронт
-    рендерит их как плашки-ссылки в reader. Текстовый ответ намеренно пустой.
+    ключевые слова (1 дешёвый LLM-шаг `_extract_keywords`). Этап 1 — строки
+    онтологии (`search_ontology`: книга/глава + старт). Этап 2 —
+    `refine_ontology_hits`: FTS по `pages_fts` внутри диапазона главы → плашка на
+    лучшую страницу со сниппетом из тела (`precise=True`); в диапазоне пусто —
+    фолбэк на старт главы и аннотацию (`precise=False`). Старый index.db
+    (OperationalError) → прежний маппинг строк онтологии. Текстовый ответ пустой.
     """
     # Шаг 1 — ключевые слова (тот же дешёвый LLM-шаг, что и в inline-режиме).
     # history_msgs не используем: экран отдаёт хиты, а не ведёт диалог.
     keywords = _extract_keywords(message, usage)
 
     # Шаг 2 — ретрив по онтологии (без контентного FTS); безопасно к старому index.db
-    ontology_rows = _lookup_ontology(db, keywords)
-    hits = [_ontology_row_to_hit(o) for o in ontology_rows]
+    rows = _lookup_ontology(db, keywords)
+
+    # Шаг 3 — этап 2: страница-фрагмент внутри главы (SQL-only, без LLM)
+    try:
+        hits = refine_ontology_hits(db, rows, keywords)
+    except sqlite3.OperationalError as exc:
+        log.warning("ontology refine skipped (old index.db / no pages_fts?): %s", exc)
+        hits = [_ontology_row_to_hit(o) for o in rows]
     _add_hits(collected, hits)
     usage.tool_calls += 1
 

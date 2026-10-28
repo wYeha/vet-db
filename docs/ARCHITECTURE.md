@@ -88,16 +88,22 @@ S3 (источник правды, ~15 ГБ) ──ingest──▶ data/index.db
 - `llm.py` — OpenAI-совместимый клиент RouterAI (httpx): `chat_completion(messages, tools)`,
   таймаут/ретраи (4xx не ретраит), `LLMNotConfigured`/`LLMError`; Authorization не логируется.
 - `schemas.py` — Pydantic-модели ответов.
+- `snippets.py` — `safe_snippet`, `SNIPPET_ARGS` (+ алиасы `_safe_snippet`, `_SNIP`), `_MARK_OPEN/_MARK_CLOSE` (экранирование HTML +
+  доверенный `<mark>`); общий для `routers/search.py` (реэкспорт под теми же именами) и ядра.
+- `ontology.py` — ядро онтологии (без импорта роутеров): `search_ontology` (FTS по
+  `ontology_fts`) и этап 2 чата `refine_ontology_hits` (`_chapter_ranges`, `_best_page`, `_is_bibliography`,
+  `_shift_fallback_start`), общий фолбэк-маппер `fallback_hit`.
 - Роутеры (`routers/`):
   - `sources.py` — `GET /api/sources` (фильтр q), `/{id}`, `/{id}/toc?origin=all|curated|markdown`,
     `/{id}/pages/{index}`, `/{id}/pdf` (302 на presigned S3).
   - `search.py` — `GET /api/search` (см. «Поиск»); `_search_books/_search_pharma/_search_diseases`,
-    `_safe_snippet` (экранирование HTML + доверенный `<mark>`).
+    `_safe_snippet` (импорт из `snippets.py`).
   - `preparations.py` — `GET /api/preparations` (фильтры drug_class/animal/q/origin), `/{id}`.
   - `diseases.py` — `GET /api/diseases?species=`, `/{id}`.
   - `chat.py` — `POST /api/chat` (см. «Поиск: чат»); бюджет-гард, 503/429/502; запись в history.
   - `conversations.py` — `GET /api/conversations`, `/{id}`, `POST /api/conversations/clear`.
-- Тесты: `backend/tests/test_chat.py`, `test_history.py`.
+- Тесты: `backend/tests/test_chat.py`, `test_history.py`, `test_ontology_refine.py`
+  (этап 2 на in-memory SQLite), `test_search_real_index.py` (на реальном index.db, skip без него).
 
 ---
 
@@ -137,17 +143,46 @@ qwen3 есть в дампах, но пока не подключены (буд�
   `diseases_fts` (`disease`).
 - Ранжирование — встроенный **BM25** FTS5 (`ORDER BY rank`); сниппет с подсветкой —
   `snippet()` FTS5, прогнанный через `_safe_snippet` (HTML-escape + только `<mark>`).
-- Хит: `{type, source_id, source_title, page_index, ref_id, title, snippet, score}`.
+- Хит: `{type, source_id, source_title, page_index, ref_id, title, snippet, score, precise}`
+  (`precise` — только чат `mode=ontology`, см. «Контракт хита»).
 
 ### 2. Чат-ассистент — `POST /api/chat` (агент RouterAI над поиском)
 Модель НЕ пишет медицинских ответов — помогает НАЙТИ источник. Поле `mode` в теле
 задаёт три-экранную модель поиска:
-- **`mode=ontology`** (ДЕФОЛТ, экран «Онтология») — ретрив ТОЛЬКО по карте онтологии
-  (`search_ontology`, без контентного FTS): `_extract_keywords` → `search_ontology` →
-  LLM даёт навигационный ответ «смотри такую-то книгу/главу/страницу». Строки
-  онтологии маппятся в `SearchHit(type="page")` (при `kind=book` — уровень книги,
-  `page_index=null`). Обёрнуто в try/except `OperationalError` (старый `index.db` без
-  `ontology_fts` не роняет режим). Обычный вызов `/api/chat` без `mode` идёт сюда.
+- **`mode=ontology`** (ДЕФОЛТ, экран «Онтология») — ретрив по карте онтологии:
+  `_extract_keywords` (1 LLM) → `search_ontology` (≤8 строк: книга/глава + старт) →
+  `refine_ontology_hits` (этап 2, `backend/app/ontology.py`, только SQL). Ответ модели
+  пустой — наверх уходят плашки `SearchHit(type="page")`. Обычный вызов `/api/chat`
+  без `mode` идёт сюда.
+  **Этап 2 — от начала главы к странице-фрагменту.** Для каждой строки онтологии —
+  FTS по `pages_fts` внутри диапазона страниц главы `[start-1, end+1)` (запас
+  `_RANGE_MARGIN=1`, нижняя граница ≥ 0). Конец главы: `ontology_fts.page_end`, если
+  колонка есть и не NULL; иначе минимальный старт другой главы того же источника
+  строго больше текущего; иначе `sources.num_pages`; иначе без верхней границы
+  (`end<=start` → `start+1`). Запрос: сначала AND (`build_match_query`), при пустом
+  результате — OR (`build_or_match_query`). Один запрос на ступень берёт до
+  `_CANDIDATES=60` кандидатов по BM25, выбирается первый **не список литературы**
+  (`_is_bibliography`: ≥3 строк-цитат «год + начало библиографической записи» и ≥50%
+  содержательных строк — Harvard/Vancouver/«И.О. Фамилия»/«Орг (2019)», рус. и лат.;
+  плотная латынь литературы иначе выигрывает BM25). Если в ступени только литература —
+  она считается пустой.
+  Найдено → `page_index` = эта страница, сниппет из тела книги (`_safe_snippet`,
+  только доверенный `<mark>`), `precise=true`; не найдено → фолбэк: старт главы +
+  сниппет аннотации, `precise=false` (фронт дописывает «(начало главы)»). Если старт
+  главы (из-за ±1) попал на литературу предыдущей главы, а следующая страница — нет,
+  фолбэк сдвигается на +1 (точечный запрос, только для фолбэков).
+  `kind=book` и главы без старта (`page_index` NULL) ищут по всему источнику с нижней
+  границей «первая известная глава − 1» (отсекает титул/печатное оглавление) и
+  подписываются главой, в чей диапазон попала страница. Дедуп по
+  `(source_id, page_index)` в порядке онтологии (book-хит, совпавший со страницей
+  главы, получает её название); `score` и порядок — от онтологии. Бюджет: PRAGMA + 2
+  вспомогательных запроса (колонки перечислены явно, наличие `page_end` — через
+  `PRAGMA table_info`) + ≤2 FTS на строку (кэш в пределах вызова) + ≤1 точечный запрос
+  на фолбэк; в логе `ontology refine: rows= fts= fallbacks= bib_skipped= ms=`. Деградация: старый `index.db` без `ontology_fts` →
+  пустая карта; `OperationalError` в этапе 2 (нет `pages_fts`) → прежний маппинг строк
+  онтологии. `/api/ontology/search` (внешний скилл) этап 2 не использует, его контракт
+  и SQL не менялись. Известное ограничение: детектор литературы эвристический
+  (по формату строк) — нестандартно оформленные списки могут не распознаться.
 - **`mode=vector`** (экран «Вектор») — заглушка: **501** ДО бюджет-гарда и любого
   вызова LLM (бюджет не тратим; фронт этот экран бэк не зовёт).
 - **`mode` не задан (`None`)** — старый путь над контентным FTS (ниже). Достижим
@@ -177,7 +212,11 @@ DeepSeek нестабилен (протекает разметка). Три ша
 
 ### Контракт хита (общий для поиска и чата)
 `SearchHit`: `type=page|preparation|disease`, для page — `source_id/source_title/
-page_index`, для preparation/disease — `ref_id/title`; общее — `snippet/score`. Фронт
+page_index`, для preparation/disease — `ref_id/title`; общее — `snippet/score`.
+Аддитивное поле `precise` (только чат `mode=ontology`): `true` — страница найдена FTS в
+теле книги внутри главы, сниппет из тела; `false` — фолбэк (старт главы или уровень
+книги, сниппет из аннотации); `null` — все прочие хиты (поиск, старый чат, история до
+изменения). Для онтологии `title` — название главы (или «о книге»). Фронт
 строит из этого ссылки: page→читалка `/source/{id}?page=`, preparation→`/pharma/{id}`,
 disease→`/diseases/{id}`.
 
@@ -187,6 +226,30 @@ disease→`/diseases/{id}`.
 «карту» и выбирает, где искать (без векторов). Генерируется Claude/субагентами (не
 RouterAI). Пилот — в `ontology/PILOT.md`; хранение — `sources.description` (книга) +
 `toc.summary` (глава).
+
+Поиск — `ontology_fts(chapter_title, summary, source_id, source_slug, source_title,
+page_index, kind, page_end)`, загружается `ontology/load_annotations.py` (идемпотентно,
+индекс — пересобираемая проекция). Из заголовка аннотации `### Название (стр A–B)`
+берутся `page_index = A-1` (старт главы) и `page_end = B` (exclusive-конец в той же
+конвенции; NULL, если в заголовке одна страница или страниц нет; у `kind=book` — NULL).
+`page_end` — последняя колонка, индексы колонок для `snippet()` не сдвинуты; во внешний
+`/api/ontology/search` не отдаётся (SQL перечисляет колонки явно). Бэкенд работает и
+без этой колонки (старый индекс) — тогда конец главы = следующий старт.
+
+**Известное ограничение: конвенция страниц в аннотациях смешанная (0/1-based).** В
+одних аннотациях A уже 0-based (`streptococcosis_dissertation`: «Глава 1 (стр 9–11)»
+при `start=9` в `chapters/*.json` → после `-1` получается 8), в других 1-based
+(`vic_articles_swine`: «(стр 1)» = page 0). Отсюда систематическая ошибка старта/конца
+±1 стр. Не исправляется (сдвиг поменял бы `page_index` во внешнем
+`/api/ontology/search`); в чате гасится запасом диапазона `_RANGE_MARGIN=1` с обеих
+сторон. Исправление — отдельная задача (нормализовать A по аннотациям).
+
+**Почему этап 2 не расширяет запрос словарём аннотации.** Глава уже выбрана потому,
+что ключевые слова совпали с её аннотацией; билингвальность (рус. аннотация + англ.
+тело) закрывается OR-ступенью, т.к. в keywords уже есть латынь. Термины `summary`
+описывают тему главы, а не запрос: страница, «плотная по главе», была бы подана как
+точный фрагмент (`precise=true`) и вводила бы в заблуждение. Честный фолбэк (начало
+главы + аннотация с пометкой) полезнее ложноточного фрагмента.
 
 ---
 
